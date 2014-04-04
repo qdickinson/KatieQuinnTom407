@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <Button
+            android:id="@+id/scientificbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp"
+            android:onClick="onButtonClick"
+            android:text="Scientific" />
+
+        <Button
+            android:id="@+id/molweightbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/scientificbutton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="23dp"
+            android:onClick="onButtonClick"
+            android:text="Mol Weight" />
+
+        <Button
+            android:id="@+id/solutionsbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/scientificbutton"
+            android:layout_below="@+id/molweightbutton"
+            android:layout_marginTop="19dp"
+            android:onClick="onButtonClick"
+            android:text="Solutions" />
+
+        <Button
+            android:id="@+id/dilutionsbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/solutionsbutton"
+            android:layout_below="@+id/solutionsbutton"
+            android:layout_marginTop="26dp"
+            android:onClick="onButtonClick"
+            android:text="Dilutions" />
+
+        <Button
+            android:id="@+id/unitconverterbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dilutionsbutton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dp"
+            android:onClick="onButtonClick"
+            android:text="Unit Converter" />
+
+    </RelativeLayout>
+
+</LinearLayout>

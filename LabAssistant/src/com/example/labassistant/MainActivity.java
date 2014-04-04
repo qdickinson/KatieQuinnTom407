@@ -25,7 +25,14 @@ public class MainActivity extends Activity {
 	{
 		switch(v.getId())
 		{
- 
+		case R.id.calculatorbutton:
+			
+			setContentView(R.layout.view_calculators);
+			
+			break;
+		
+		
+			
 		case R.id.notepadbutton:
  
 			Intent notepadIntent = new Intent(MainActivity.this, NotepadActivity.class);
