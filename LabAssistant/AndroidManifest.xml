@@ -26,6 +26,14 @@
             android:name="com.example.labassistant.NotepadActivity"
             android:label="@string/app_name">
         </activity>
+        <activity
+            android:name="com.example.labassistant.MolActivity"
+            android:label="@string/app_name">
+        </activity>
+         <activity
+            android:name="com.example.labassistant.SolutionsActivity"
+            android:label="@string/app_name">
+        </activity>
     </application>
 
 </manifest>
