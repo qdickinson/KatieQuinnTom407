@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+    <TextView
+            android:id="@+id/text_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="96dp"
+            android:text="Left Side"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+            android:id="@+id/text_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/text_left"
+            android:layout_alignBottom="@+id/text_left"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:text="Right Side"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+            android:id="@+id/button_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/text_left"
+            android:layout_alignParentBottom="true"
+            android:onClick="onButtonClick"
+            android:text="Balance" />
+
+    <Button
+            android:id="@+id/button_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/text_right"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/text_right"
+            android:onClick="onButtonClick"
+            android:text="Clear" />
+
+    <EditText
+            android:id="@+id/add_cmpd_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/add_cmpd_right"
+            android:layout_alignBottom="@+id/add_cmpd_right"
+            android:layout_alignLeft="@+id/text_left"
+            android:layout_alignRight="@+id/left_add_cmpd"
+            android:ems="10"
+            android:inputType="text" />
+
+    <EditText
+            android:id="@+id/add_cmpd_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/text_right"
+            android:layout_alignRight="@+id/text_right"
+            android:layout_below="@+id/text_right"
+            android:layout_marginTop="29dp"
+            android:ems="10"
+            android:inputType="text" />
+
+    <Button
+            android:id="@+id/right_add_cmpd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/add_cmpd_right"
+            android:layout_below="@+id/add_cmpd_right"
+            android:onClick="onButtonClick"
+            android:text="Add Compound" />
+
+    <Button
+            android:id="@+id/left_add_cmpd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/right_add_cmpd"
+            android:layout_alignBottom="@+id/right_add_cmpd"
+            android:layout_alignParentLeft="true"
+            android:onClick="onButtonClick"
+            android:text="Add Compound" />
+
+    <TextView
+            android:id="@+id/equation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button_clear"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="68dp"
+            android:text="" />
+
+</RelativeLayout>

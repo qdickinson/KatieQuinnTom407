@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="46dp"
-        android:text="Notepad" 
+        android:text="Notepad"
         android:onClick="onButtonClick"
         />
 
@@ -26,7 +26,7 @@
         android:layout_below="@+id/notepadbutton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp"
-        android:text="Calculators" 
+        android:text="Calculators"
         android:onClick="onButtonClick"
         />
 
@@ -36,18 +36,18 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Periodic Table" 
+        android:text="Periodic Table"
         android:onClick="onButtonClick"
         />
 
     <Button
-        android:id="@+id/chemeqbutton"
+        android:id="@+id/eqn_balancer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/periodicbutton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp"
-        android:text="Chemical Equation Solver" 
+        android:text="Chemical Equation Balancer"
         android:onClick="onButtonClick"
         />
 

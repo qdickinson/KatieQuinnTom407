@@ -26,23 +26,23 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+
 	public void onButtonClick(View v)
 	{
 		switch(v.getId())
 		{
 		case R.id.calculatorbutton:
-			
+
 			setContentView(R.layout.view_calculators);
-			
+
 			break;
-			
+
 		case R.id.scientificbutton:
-				
+
 			ArrayList<HashMap<String,Object>> items =new ArrayList<HashMap<String,Object>>();
-			
+
 			final PackageManager pm = getPackageManager();
-			List<PackageInfo> packs = pm.getInstalledPackages(0);  
+			List<PackageInfo> packs = pm.getInstalledPackages(0);
 			for (PackageInfo pi : packs) {
 			if( pi.packageName.toString().toLowerCase().contains("calcul")){
 			    HashMap<String, Object> map = new HashMap<String, Object>();
@@ -51,59 +51,65 @@ public class MainActivity extends Activity {
 			    items.add(map);
 			 }
 			}
-			
+
 			if(items.size()>=1){
 				String packageName = (String) items.get(0).get("packageName");
 				Intent i = pm.getLaunchIntentForPackage(packageName);
 				if (i != null)
 				  startActivity(i);
-				} 
+				}
 				else{
 				      // Application not found
 				   }
-			
+
 			break;
-			
+
 		case R.id.molweightbutton:
-			
+
 			Intent molIntent = new Intent(MainActivity.this, MolActivity.class);
-			startActivity(molIntent);	
-			
+			startActivity(molIntent);
+
 			break;
-			
+
 		case R.id.solutionsbutton:
-			
+
 			Intent solutionsIntent = new Intent(MainActivity.this, SolutionsActivity.class);
-			startActivity(solutionsIntent);	
-			
+			startActivity(solutionsIntent);
+
 			break;
-			
+
 		case R.id.dilutionsbutton:
-			
+
 			setContentView(R.layout.view_calculators);
-			
+
 			break;
-			
+
 		case R.id.unitconverterbutton:
-			
+
 			setContentView(R.layout.view_calculators);
-			
+
 			break;
-		
-			
+
+
 		case R.id.notepadbutton:
- 
+
 			Intent notepadIntent = new Intent(MainActivity.this, NotepadActivity.class);
-			startActivity(notepadIntent);		
- 
+			startActivity(notepadIntent);
+
 			break;
-			
+
+        case R.id.eqn_balancer:
+            Intent balanceIntent = new Intent(MainActivity.this, EqnBalancer.class);
+            startActivity(balanceIntent);
+
+            break;
+
 		case R.id.backbutton:
-			
+
 			setContentView(R.layout.activity_main);
-			
+
 			break;
- 
+
 		default:
 		}
 	}
