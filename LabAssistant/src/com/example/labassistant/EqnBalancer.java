@@ -1,116 +1,137 @@
 package com.example.labassistant;
 
-
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
+import android.widget.AdapterView.OnItemSelectedListener;
 
-public class EqnBalancer extends Activity{
+import java.util.ArrayList;
 
-    // Create the text view
-    private TextView textView;
-    private String input = "->";
+public class EqnBalancer extends Activity {
 
-    //entry validation: check for valid format in form NumberElementNumberElementNumber..., make sure
-    //no other characters are added, check for only valid elements later (make a list of valid elements?)
-    //need to think of validation for same elements added to each side
+    String[] elements;
+    private Spinner elementsSpinner;
+    private ArrayList<String> compounds = new ArrayList<String>();
+    private String compound = "";
+    private TextView compoundTextView;
+    private TextView eqnView;
+    private int index;
+    private String equation = "->";
+    private String coefficient = "";
 
-    //figure out why my validation method either fails for everything or passes for everything...is char parsing
-    //happening correctly?
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eqnbalancer);
-        textView = (TextView) findViewById(R.id.equation);
+
+        compoundTextView = (TextView) findViewById(R.id.compoundTextView);
+        eqnView = (TextView) findViewById(R.id.eqnView);
+
+
+        elementsSpinner = (Spinner) findViewById(R.id.eqnBalancerSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.elements_array, android.R.layout.simple_spinner_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        elementsSpinner.setAdapter(adapter);
+
+        elementsSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                index = arg0.getSelectedItemPosition();
+                elements = getResources().getStringArray(R.array.elements_array);
+                // Toast.makeText(getBaseContext(), "You have selected: " +elements[index], Toast.LENGTH_SHORT).show();
+            }
+
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // do nothing
+            }
+        });
 
     }
 
-    public void onButtonClick(View v)
-    {
-        switch(v.getId())
-        {
-            case R.id.button_clear:
+    public void onButtonClick(View v) {
+        switch(v.getId()) {
 
-                textView.setText("");
-                input = "->";
+            case R.id.clearCmdButton:
+                compoundTextView.setText("");
+                compound = "";
                 break;
 
-            case R.id.button_balance:
-                //add code later
-                break;
+            case R.id.cmdAddLeft:
 
-            case R.id.left_add_cmpd:
-                textView.setText("");
-                EditText mEditLeft   = (EditText)findViewById(R.id.add_cmpd_left);
-                if (mEditLeft.getText().toString().equals("")) {
+                if (compoundTextView.getText().toString().equals("")) {
                     Toast.makeText(getApplicationContext(), "Please enter a compound", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    input = textView.getText().toString() + input;
-                    if(!validateInput(mEditLeft.getText().toString())) {
-                       // Toast.makeText(getApplicationContext(), "Only numbers and letters should be entered", Toast.LENGTH_LONG).show();
-                    }
-                    //continue implementing input validation
-                    if (input.indexOf('-') != 0) {
-                        String input2 = input.substring(input.indexOf('-') - 1);
-                        input = input.substring(0, input.indexOf('-') - 1) + " + " + mEditLeft.getText().toString() + input2;
+                    eqnView.setText("");
+
+                    if (equation.indexOf('-') != 0) {
+                        String equation2 = equation.substring(equation.indexOf('-') - 1);
+                        equation = equation.substring(0, equation.indexOf('-') - 1) + " + " + coefficient +
+                                compound + equation2;
                     }
                     else {
-                        input = mEditLeft.getText().toString() + " " + input;
+                        equation = coefficient + compound + " " + equation;
                     }
-                    textView.setText(input);
-                    mEditLeft.setText("");
-                }
 
+                    eqnView.setText(equation);
+                    compoundTextView.setText("");
+                    EditText coefficientText = (EditText)findViewById(R.id.coefficientEqnBalancer);
+                    coefficientText.setText("");
+                    EditText subscriptText = (EditText)findViewById(R.id.subscriptEditText);
+                    subscriptText.setText("");
+                    compound = "";
+                    coefficient = "";
+                }
                 break;
 
-            case R.id.right_add_cmpd:
-                textView.setText("");
-                EditText mEditRight   = (EditText)findViewById(R.id.add_cmpd_right);
-                if (mEditRight.getText().toString().equals("")) {
+            case R.id.cmdAddRight:
+                if (compoundTextView.getText().toString().equals("")) {
                     Toast.makeText(getApplicationContext(), "Please enter a compound", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    input = textView.getText().toString() + input;
-                    if (input.indexOf('>') != input.length() - 1) {
-                        input = input + " + " + mEditRight.getText().toString();
+                    eqnView.setText("");
+
+                    if (equation.indexOf('>') != equation.length() - 1) {
+                        equation = equation + " + " + coefficient + compound;
                     }
                     else {
-                        input = input + " " + mEditRight.getText().toString();
+                        equation = equation + " " + coefficient + compound;
                     }
-                    textView.setText(input);
-                    mEditRight.setText("");
+
+                    eqnView.setText(equation);
+                    compoundTextView.setText("");
+                    EditText coefficientText = (EditText)findViewById(R.id.coefficientEqnBalancer);
+                    coefficientText.setText("");
+                    EditText subscriptText = (EditText)findViewById(R.id.subscriptEditText);
+                    subscriptText.setText("");
+                    compound = "";
+                    coefficient = "";
                 }
+                break;
+
+            case R.id.balanceEqnButton:
+                break;
+
+            case R.id.clearEqnButton:
+                eqnView.setText("");
+                equation = "->";
+                break;
+
+            case R.id.buttonCoeff:
+                EditText coefficientText = (EditText)findViewById(R.id.coefficientEqnBalancer);
+                coefficient = coefficientText.getText().toString();
+                String selectedElement = elements[index];
+                EditText subscriptText = (EditText)findViewById(R.id.subscriptEditText);
+                String subscript = subscriptText.getText().toString();
+                compound = compound + selectedElement + subscript;
+                compoundTextView.setText(coefficient + compound);
 
                 break;
 
             default:
         }
     }
-
-    private boolean validateInput(String compound) {
-        for (int i = 0; i < compound.length(); i++) {
-            if (Character.getNumericValue(compound.charAt(i)) < 48 || Character.getNumericValue(compound.charAt(i))  > 122) {
-                return false;
-            }
-            else if (Character.getNumericValue(compound.charAt(i))  > 57 && Character.getNumericValue(compound.charAt(i))  < 65) {
-                return false;
-            }
-            else if (Character.getNumericValue(compound.charAt(i))  > 90 && Character.getNumericValue(compound.charAt(i))  < 97) {
-                return false;
-            }
-        }
-        return true;
-
-    }
-
 
 }

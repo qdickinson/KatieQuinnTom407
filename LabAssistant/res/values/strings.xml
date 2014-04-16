@@ -5,4 +5,32 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
 
+    <string name="select">Select an Element</string>
+
+    <string-array name="elements_array"><item>Ac</item><item>Ag</item><item>Al</item><item>Am</item>
+    <item>Ar</item><item>As</item><item>At</item><item>Au</item><item>B</item>
+    <item>Ba</item><item>Be</item><item>Bh</item><item>Bi</item><item>Bk</item>
+    <item>Br</item><item>C</item><item>Ca</item><item>Cd</item><item>Ce</item>
+    <item>Cf</item><item>Cl</item><item>Cm</item><item>Cn</item><item>Co</item>
+    <item>Cr</item><item>Cs</item><item>Cu</item><item>Db</item><item>Ds</item>
+    <item>Dy</item><item>Er</item><item>Es</item><item>Eu</item><item>F</item>
+    <item>Fe</item><item>Fl</item><item>Fm</item><item>Fr</item><item>Ga</item>
+    <item>Gd</item><item>Ge</item><item>H</item><item>He</item><item>Hf</item>
+    <item>Hg</item><item>Ho</item><item>Hs</item><item>I</item><item>In</item>
+    <item>Ir</item><item>K</item><item>Kr</item><item>La</item><item>Li</item>
+    <item>Lr</item><item>Lu</item><item>Lv</item><item>Md</item><item>Mg</item>
+    <item>Mn</item><item>Mo</item><item>Mt</item><item>N</item><item>Na</item>
+    <item>Nb</item><item>Nd</item><item>Ne</item><item>Ni</item><item>No</item>
+    <item>Np</item><item>O</item><item>Os</item><item>P</item><item>Pa</item>
+    <item>Pb</item><item>Pd</item><item>Pm</item><item>Po</item><item>Pr</item>
+    <item>Pt</item><item>Pu</item><item>Ra</item><item>Rb</item><item>Re</item>
+    <item>Rf</item><item>Rg</item><item>Rh</item><item>Rn</item><item>Ru</item>
+    <item>S</item><item>Sb</item><item>Sc</item><item>Se</item><item>Sg</item>
+    <item>Si</item><item>Sm</item><item>Sn</item><item>Sr</item><item>Ta</item>
+    <item>Tb</item><item>Tc</item><item>Tc</item><item>Te</item><item>Th</item>
+    <item>Ti</item><item>Tl</item><item>Tm</item><item>U</item><item>Uun</item>
+    <item>Uuo</item><item>Uup</item><item>Uus</item><item>Uut</item><item>Uuu</item>
+    <item>V</item><item>W</item><item>Xe</item><item>Y</item><item>Yb</item>
+    <item>Zn</item><item>Zr</item></string-array>
+
 </resources>
