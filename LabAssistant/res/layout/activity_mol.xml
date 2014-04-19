@@ -3,60 +3,87 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="19dp"
-        android:layout_toLeftOf="@+id/clearbutton"
-        android:ems="10"
-        android:inputType="number" >
-
-        <requestFocus />
-    </EditText>
+    <Spinner
+            android:id="@+id/molWeightSpinner"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/elements_array"
+            android:prompt="@string/select"
+            android:layout_below="@+id/molWeightElement"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"/>
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="54dp"
-        android:text="Element"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+           android:id="@+id/molWeightElement"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentTop="true"
+           android:layout_marginLeft="20dp"
+           android:layout_marginTop="54dp"
+           android:text="Element"
+           android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+           android:id="@+id/molWeightSubscript"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Subscript"
+           android:textAppearance="?android:attr/textAppearanceLarge"
+           android:layout_alignTop="@+id/molWeightElement"
+           android:layout_alignLeft="@+id/clearbutton"
+           android:layout_alignStart="@+id/clearbutton"/>
+
+    <EditText
+            android:id="@+id/molEditSubscript"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_alignTop="@+id/molWeightSpinner"
+            android:layout_alignRight="@+id/molWeightSubscript"
+            android:layout_alignEnd="@+id/molWeightSubscript"/>
+
+    <TextView
+            android:id="@+id/molCompoundText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Compound:"
+            android:layout_below="@+id/molWeightSpinner"
+            android:layout_alignLeft="@+id/molWeightSpinner"
+            android:layout_alignStart="@+id/molWeightSpinner"
+            android:layout_marginTop="20dp"/>
+
+    <TextView
+            android:id="@+id/molCompoundView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=""
+            android:layout_below="@+id/molCompoundText"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"/>
 
     <Button
-        android:id="@+id/okbutton"
+            android:id="@+id/molAddElementButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onButtonClick"
+            android:text="OK"
+            android:layout_below="@+id/molEditSubscript"
+            android:layout_alignRight="@+id/molCalculatebutton"
+            android:layout_alignEnd="@+id/molCalculatebutton"/>
+
+    <Button
+        android:id="@+id/molCalculatebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText1"
-        android:layout_marginLeft="63dp"
-        android:layout_toRightOf="@+id/textView1"
         android:onClick="onButtonClick"
-        android:text="OK" />
+        android:text="Calculate"
+        android:layout_alignTop="@+id/clearbutton"
+        android:layout_toRightOf="@+id/clearbutton"
+        android:layout_marginLeft="20dp"/>
 
-    <EditText
-        android:id="@+id/compoundtext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="138dp"
-        android:ems="10" />
-
-    <EditText
-        android:id="@+id/finalmasstext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_marginLeft="23dp"
-        android:layout_toRightOf="@+id/textView2"
-        android:ems="10"
-        android:inputType="number" />
 
     <TextView
         android:id="@+id/textView2"
@@ -73,10 +100,19 @@
         android:id="@+id/clearbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/okbutton"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="44dp"
         android:onClick="onButtonClick"
-        android:text="Clear" />
+        android:text="Clear"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/molWeightSpinner"/>
+
+    <TextView
+            android:id="@+id/molDisplayValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_alignTop="@+id/textView2"
+            android:layout_alignLeft="@+id/clearbutton"
+            android:layout_alignStart="@+id/clearbutton"/>
 
 </RelativeLayout>

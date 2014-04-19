@@ -27,9 +27,8 @@
     <item>Rf</item><item>Rg</item><item>Rh</item><item>Rn</item><item>Ru</item>
     <item>S</item><item>Sb</item><item>Sc</item><item>Se</item><item>Sg</item>
     <item>Si</item><item>Sm</item><item>Sn</item><item>Sr</item><item>Ta</item>
-    <item>Tb</item><item>Tc</item><item>Tc</item><item>Te</item><item>Th</item>
-    <item>Ti</item><item>Tl</item><item>Tm</item><item>U</item><item>Uun</item>
-    <item>Uuo</item><item>Uup</item><item>Uus</item><item>Uut</item><item>Uuu</item>
+    <item>Tb</item><item>Tc</item><item>Te</item><item>Th</item>
+    <item>Ti</item><item>Tl</item><item>Tm</item><item>U</item>
     <item>V</item><item>W</item><item>Xe</item><item>Y</item><item>Yb</item>
     <item>Zn</item><item>Zr</item></string-array>
 
