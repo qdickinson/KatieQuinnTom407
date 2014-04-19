@@ -7,7 +7,7 @@
 
     <string name="select">Select an Element</string>
 
-    <string-array name="elements_array"><item>Ac</item><item>Ag</item><item>Al</item><item>Am</item>
+    <string-array name="elements_array"><item>Ac</item><item>Ag</item><item>Al</item>
     <item>Ar</item><item>As</item><item>At</item><item>Au</item><item>B</item>
     <item>Ba</item><item>Be</item><item>Bh</item><item>Bi</item><item>Bk</item>
     <item>Br</item><item>C</item><item>Ca</item><item>Cd</item><item>Ce</item>
