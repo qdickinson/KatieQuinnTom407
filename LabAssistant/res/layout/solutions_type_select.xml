@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/solution_select_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Select a measurement method for calculating the solution:"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="61dp"/>
+
+    <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content">
+        <RadioButton
+                android:id="@+id/molarityRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Molarity"
+                android:layout_marginTop="150dp"
+                android:layout_marginLeft="40dp"
+                android:onClick="onRadioButtonClicked"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+        <RadioButton
+                android:id="@+id/ppmRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Parts per Million (ppm)"
+                android:layout_below="@+id/molarityRadioButton"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="onRadioButtonClicked"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"/>
+        <RadioButton
+                android:id="@+id/mgLRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Milligrams per Liter (mg/L)"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="onRadioButtonClicked"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"/>
+        <RadioButton
+                android:id="@+id/percentRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Percent Concentration"
+                android:layout_below="@+id/mgLRadioButton"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="onRadioButtonClicked"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"/>
+    </RadioGroup>
+</RelativeLayout>

@@ -4,30 +4,34 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.MultiAutoCompleteTextView;
+import android.widget.Toast;
 
 
-
-	public class SolutionsActivity extends Activity {
+public class SolutionsActivity extends Activity {
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
-			setContentView(R.layout.activity_solutions);
-		}
-
-		@Override
-		public boolean onCreateOptionsMenu(Menu menu) {
-			// Inflate the menu; this adds items to the action bar if it is present.
-			getMenuInflater().inflate(R.menu.main, menu);
-			return true;
+			setContentView(R.layout.solutions_type_select);
 		}
 		
-		public void onButtonClick(View v)
+		public void onRadioButtonClicked(View v)
 		{
 			switch(v.getId())
 			{
-			
+                case R.id.molarityRadioButton:
+                    Toast.makeText(getApplicationContext(),"Molarity Option to be Implemented Later", Toast.LENGTH_LONG ).show();
+                    break;
+                case R.id.ppmRadioButton:
+                    Toast.makeText(getApplicationContext(),"ppm Option to be Implemented Later", Toast.LENGTH_LONG ).show();
+                    break;
+                case R.id.mgLRadioButton:
+                    Toast.makeText(getApplicationContext(),"mg/L Option to be Implemented Later", Toast.LENGTH_LONG ).show();
+                    break;
+                case R.id.percentRadioButton:
+                    Toast.makeText(getApplicationContext(),"% [] Option to be Implemented Later", Toast.LENGTH_LONG ).show();
+                    break;
 			default:
+                break;
 			}
 			
 		}
