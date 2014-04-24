@@ -4,110 +4,194 @@
     android:layout_height="match_parent" >
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="16dp"
-        android:text="Compound"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginRight="47dp"
-        android:text="Enter" />
+            android:id="@+id/volumeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Volume (L)"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_toLeftOf="@+id/button1"
-        android:ems="10"
-        android:inputType="textPersonName" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_below="@+id/textView2"
-        android:text="Enter" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_toLeftOf="@+id/button2"
-        android:ems="10"
-        android:inputType="number" />
+            android:id="@+id/volumeEdit"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:layout_alignTop="@+id/volumeText"
+            android:layout_alignLeft="@+id/soluteEdit"
+            android:layout_alignStart="@+id/soluteEdit"
+            android:layout_marginLeft="20dp"/>
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="28dp"
-        android:text="Volume"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:id="@+id/solCompoundHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter the solute compound:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_below="@+id/volumeEdit"
+            android:layout_alignLeft="@+id/solHeader"/>
+
+    <Spinner
+            android:id="@+id/solutionSpinner"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/elements_array"
+            android:prompt="@string/select"
+            android:layout_below="@+id/solCompoundHeader"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"/>
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_centerVertical="true"
-        android:text="[Concentration]"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_below="@+id/textView3"
-        android:text="Enter" />
+            android:id="@+id/subscriptSolText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subscript"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_alignRight="@+id/solCompoundHeader"
+            android:layout_alignBottom="@+id/solutionSpinner"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/solCompoundHeader"/>
 
     <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button3"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_toLeftOf="@+id/button3"
-        android:ems="10"
-        android:inputType="number" />
+            android:id="@+id/subscriptSolEdit"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_alignBottom="@+id/subscriptSolText"
+            android:layout_alignRight="@+id/subscriptSolText"
+            android:layout_alignEnd="@+id/subscriptSolText"/>
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_below="@+id/editText3"
-        android:layout_marginTop="17dp"
-        android:text="Units" />
+            android:id="@+id/solAddCompound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:onClick="onButtonClick"
+            android:layout_alignTop="@+id/solutionSpinner"
+            android:layout_alignRight="@+id/solCalcButton"
+            android:layout_alignEnd="@+id/solCalcButton"/>
+
+    <TextView
+            android:id="@+id/solCompoundView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=""
+            android:layout_below="@+id/subscriptSolEdit"
+            android:layout_alignLeft="@+id/solutionSpinner"
+            android:layout_marginTop="10dp"
+            android:layout_alignStart="@+id/solutionSpinner"/>
+
+    <Button
+            android:id="@+id/solClearCompound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            android:onClick="onButtonClick"
+            android:layout_below="@+id/subscriptSolEdit"
+            android:layout_alignRight="@+id/subscriptSolEdit"
+            android:layout_alignEnd="@+id/subscriptSolEdit"/>
+
+    <TextView
+            android:id="@+id/solHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Complete one of the two below attributes:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginBottom="230dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+
+    <TextView
+            android:id="@+id/molText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Molarity (mol/L)"
+            android:layout_alignTop="@+id/solHeader"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="60dp"/>
 
     <EditText
-        android:id="@+id/editText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button4"
-        android:layout_below="@+id/button4"
-        android:layout_marginTop="26dp"
-        android:ems="10"
-        android:inputType="number" />
+            android:id="@+id/molarityEdit"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:layout_alignBottom="@+id/molText"
+            android:layout_centerHorizontal="true"/>
+
+    <RadioButton
+            android:id="@+id/soluteMolUnits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="moles"
+            android:onClick="onButtonClick"
+            android:layout_below="@+id/soluteText"
+            android:layout_alignRight="@+id/molText"
+            android:layout_alignEnd="@+id/molText"/>
+
+    <RadioButton
+            android:id="@+id/soluteGramUnits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="grams"
+            android:onClick="onButtonClick"
+            android:layout_alignLeft="@+id/soluteMolUnits"
+            android:layout_below="@+id/soluteMolUnits"/>
+
+    <TextView
+            android:id="@+id/soluteText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount of solute"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_below="@+id/molText"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentStart="true"/>
+
+    <EditText
+            android:id="@+id/soluteEdit"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:layout_alignBottom="@+id/soluteText"
+            android:layout_toRightOf="@+id/soluteText"/>
+
+    <RadioGroup android:layout_width="match_parent" android:layout_height="match_parent"
+                android:layout_marginTop="440dp">
+
+        <RadioButton
+            android:id="@+id/solveMolarityRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onButtonClick"
+            android:text="Solve for molarity of solution"
+            android:layout_marginLeft="15dp"/>
+
+        <RadioButton
+            android:id="@+id/solveMassRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onButtonClick"
+            android:text="Solve for mass of solute"
+            android:layout_marginLeft="15dp"/>
+
+    </RadioGroup>
+
+    <Button
+            android:id="@+id/solCalcButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calculate"
+            android:onClick="onButtonClick"
+            android:layout_alignLeft="@+id/solHeader"
+            android:layout_alignTop="@+id/solHeader"
+            android:layout_marginTop="220dp"
+            android:layout_marginLeft="270dp"/>
 
 </RelativeLayout>
