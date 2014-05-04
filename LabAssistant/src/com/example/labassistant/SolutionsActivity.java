@@ -1,6 +1,8 @@
 package com.example.labassistant;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -152,7 +154,16 @@ public class SolutionsActivity extends Activity {
                             }
                             double answer = solute/volume;
                             String result = "Molarity = " + answer + " M";
-                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                            builder.setMessage(result).setTitle("Molarity of Solution: ");
+                            builder.setPositiveButton("Done", new DialogInterface.OnClickListener()
+                            {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                            builder.create();
+                            builder.show();
                         }
 
                         //solve for amount of solute
@@ -162,7 +173,16 @@ public class SolutionsActivity extends Activity {
                             double answer = volume * molarity;
                             if (molesUsed) {
                                 String result = "Solute = " + answer + " mol";
-                                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                                builder.setMessage(result).setTitle("Amount of Solute to Add: ");
+                                builder.setPositiveButton("Done", new DialogInterface.OnClickListener()
+                                {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+                                builder.create();
+                                builder.show();
                             }
                             else {
                                 double mass = 0;
@@ -172,7 +192,16 @@ public class SolutionsActivity extends Activity {
                                 }
                                 answer = answer * mass;
                                 String result = "Solute = " + answer + " g";
-                                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                                builder.setMessage(result).setTitle("Amount of Solute to Add: ");
+                                builder.setPositiveButton("Done", new DialogInterface.OnClickListener()
+                                {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+                                builder.create();
+                                builder.show();
                             }
                         }
                     }
