@@ -9,25 +9,58 @@
         android:layout_height="match_parent" >
 
         <Button
-            android:id="@+id/newbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="128dp"
-            android:onClick="onButtonClick"
-            android:text="New" />
-
-     
-
-        <Button
             android:id="@+id/openbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/newbutton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="91dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="24dp"
+            android:onClick="onButtonClick"
             android:text="Open Existing Note" />
+
+        <EditText
+            android:id="@+id/notename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/openbutton"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="34dp"
+            android:ems="10"
+            android:hint="Name the Note" />
+
+        <Button
+            android:id="@+id/savebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/notename"
+            android:layout_toRightOf="@+id/notename"
+            android:onClick="onButtonClick"
+            android:text="Save" />
+
+        <EditText
+            android:id="@+id/notetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/notename"
+            android:layout_alignLeft="@+id/openbutton"
+            android:layout_alignRight="@+id/button1"
+            android:layout_below="@+id/openbutton"
+            android:layout_marginTop="22dp"
+            android:ems="10"
+            android:inputType="textMultiLine" >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/newbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/notetext"
+            android:layout_toRightOf="@+id/notetext"
+            android:onClick="onButtonClick"
+            android:text="New" />
 
     </RelativeLayout>
 
