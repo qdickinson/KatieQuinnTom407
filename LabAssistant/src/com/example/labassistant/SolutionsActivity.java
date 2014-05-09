@@ -46,6 +46,7 @@ public class SolutionsActivity extends Activity {
 		
 		public void onButtonClick(View v)
 		{
+            ArrayAdapter<CharSequence> adapter;
 			switch(v.getId())
 			{
                 case R.id.molarityRadioButton:
@@ -54,7 +55,7 @@ public class SolutionsActivity extends Activity {
                     solCompoundView = (TextView) findViewById(R.id.solCompoundView);
 
                     elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner);
-                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                    adapter = ArrayAdapter.createFromResource(this,
                             R.array.elements_array, android.R.layout.simple_spinner_item);
 
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -70,10 +71,26 @@ public class SolutionsActivity extends Activity {
                             //do nothing
                         }
                     });
-                    //Toast.makeText(getApplicationContext(),"Molarity Option to be Implemented Later", Toast.LENGTH_LONG ).show();
                     break;
                 case R.id.ppmRadioButton:
-                    Toast.makeText(getApplicationContext(),"ppm Option to be Implemented Later", Toast.LENGTH_LONG ).show();
+                    setContentView(R.layout.activity_solutions_ppm);
+                    elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner2);
+                     adapter = ArrayAdapter.createFromResource(this,
+                            R.array.elements_array, android.R.layout.simple_spinner_item);
+
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    elementsSpinner.setAdapter(adapter);
+
+                    elementsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                            index = arg0.getSelectedItemPosition();
+                            elements = getResources().getStringArray(R.array.elements_array);
+                        }
+
+                        public void onNothingSelected(AdapterView<?> arg0) {
+                            //do nothing
+                        }
+                    });
                     break;
                 case R.id.mgLRadioButton:
                     Toast.makeText(getApplicationContext(),"mg/L Option to be Implemented Later", Toast.LENGTH_LONG ).show();

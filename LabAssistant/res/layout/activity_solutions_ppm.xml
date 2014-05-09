@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+
+    <TextView
+            android:id="@+id/solCompoundHeader2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter the solute compound:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_alignLeft="@+id/solHeader2"/>
+
+    <Spinner
+            android:id="@+id/solutionSpinner2"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/elements_array"
+            android:prompt="@string/select"
+            android:layout_below="@+id/solCompoundHeader2"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"/>
+
+    <TextView
+            android:id="@+id/subscriptSolText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subscript"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_alignRight="@+id/solCompoundHeader2"
+            android:layout_alignBottom="@+id/solutionSpinner2"
+            android:layout_below="@+id/solCompoundHeader2"/>
+
+    <EditText
+            android:id="@+id/subscriptSolEdit2"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginTop="15dp"
+            android:layout_alignBottom="@+id/subscriptSolText2"
+            android:layout_alignRight="@+id/subscriptSolText2"
+            android:layout_alignEnd="@+id/subscriptSolText2"/>
+
+    <Button
+            android:id="@+id/solAddCompound2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:onClick="onButtonClick"
+            android:layout_alignTop="@+id/solutionSpinner2"
+            android:layout_alignRight="@+id/solCalcButton2"
+            android:layout_alignEnd="@+id/solCalcButton2"/>
+
+    <TextView
+            android:id="@+id/solCompoundView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=""
+            android:layout_below="@+id/subscriptSolEdit2"
+            android:layout_alignLeft="@+id/solutionSpinner2"
+            android:layout_marginTop="10dp"
+            android:layout_alignStart="@+id/solutionSpinner2"/>
+
+    <Button
+            android:id="@+id/solClearCompound2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            android:onClick="onButtonClick"
+            android:layout_below="@id/subscriptSolEdit2"
+            android:layout_alignRight="@id/subscriptSolEdit2"
+            android:layout_alignEnd="@id/subscriptSolEdit2"/>
+
+    <TextView
+            android:id="@+id/solventMassText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Solvent Mass (g)"
+            android:layout_above="@id/solHeader2"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="50dp"
+            />
+
+    <EditText
+            android:id="@+id/solventEditText"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:layout_alignBottom="@+id/solventMassText"
+            android:layout_alignLeft="@+id/solClearCompound2"
+            android:layout_alignStart="@+id/solClearCompound2"/>
+
+    <TextView
+            android:id="@+id/solHeader2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Complete one of the two below attributes:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+
+    <TextView
+            android:id="@+id/ppmText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Parts per Million (ppm)"
+            android:layout_alignTop="@+id/solHeader2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="60dp"/>
+
+    <EditText
+            android:id="@+id/ppmEdit"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:layout_alignBottom="@+id/ppmText"
+            android:layout_marginLeft="210dp"/>
+
+    <RadioGroup android:layout_width="match_parent" android:layout_height="match_parent"
+                android:layout_marginTop="340dp" android:layout_marginLeft="50dp">
+
+        <RadioButton
+                android:id="@+id/soluteMolUnits2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="moles"
+                android:onClick="onButtonClick"
+                android:layout_below="@+id/soluteText2"
+                android:layout_alignRight="@+id/molText2"
+                android:layout_alignEnd="@+id/molText2"/>
+
+        <RadioButton
+                android:id="@+id/soluteGramUnits2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="grams"
+                android:onClick="onButtonClick"
+                android:layout_alignLeft="@+id/soluteMolUnits2"
+                android:layout_below="@+id/soluteMolUnits2"/>
+
+    </RadioGroup>
+
+    <TextView
+            android:id="@+id/soluteText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount of solute"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_below="@+id/ppmText"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentStart="true"/>
+
+    <EditText
+            android:id="@+id/soluteEdit2"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:layout_alignBottom="@+id/soluteText2"
+            android:layout_toRightOf="@+id/soluteText2"/>
+
+    <RadioGroup android:layout_width="match_parent" android:layout_height="match_parent"
+                android:layout_marginTop="420dp">
+
+        <RadioButton
+                android:id="@+id/solveMolarityRadioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onButtonClick"
+                android:text="Solve for molarity of solution"
+                android:layout_marginLeft="15dp"/>
+
+        <RadioButton
+                android:id="@+id/solveMassRadioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onButtonClick"
+                android:text="Solve for mass of solute"
+                android:layout_marginLeft="15dp"/>
+
+    </RadioGroup>
+
+    <Button
+            android:id="@+id/solCalcButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calculate"
+            android:onClick="onButtonClick"
+            android:layout_alignLeft="@+id/solHeader2"
+            android:layout_alignTop="@+id/solHeader2"
+            android:layout_marginTop="220dp"
+            android:layout_marginLeft="270dp"/>
+
+</RelativeLayout>
