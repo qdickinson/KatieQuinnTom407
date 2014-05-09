@@ -21,11 +21,13 @@ public class SolutionsActivity extends Activity {
 
     private String compound = "";
     private TextView solCompoundView;
+    private TextView solCompoundView2;
 
     private boolean molesUsed = false;
     private boolean solveMolarity = false;
     private boolean selectUnits = false;
     private boolean selectVariable = false;
+    private boolean solvePPM = false;
 
 
     private Double[] molWeights = {227.0, 107.87, 26.982, 39.948, 74.922, 210.0, 196.97, 10.811, 137.33, 9.0122, 272.0,
@@ -53,7 +55,14 @@ public class SolutionsActivity extends Activity {
                     setContentView(R.layout.activity_solutions);
 
                     solCompoundView = (TextView) findViewById(R.id.solCompoundView);
-
+                    indices.clear();
+                    subscripts.clear();
+                    molesUsed = false;
+                    solveMolarity = false;
+                    selectUnits = false;
+                    selectVariable = false;
+                    solvePPM = false;
+                    compound = "";
                     elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner);
                     adapter = ArrayAdapter.createFromResource(this,
                             R.array.elements_array, android.R.layout.simple_spinner_item);
@@ -74,6 +83,15 @@ public class SolutionsActivity extends Activity {
                     break;
                 case R.id.ppmRadioButton:
                     setContentView(R.layout.activity_solutions_ppm);
+                    solCompoundView2 = (TextView) findViewById(R.id.solCompoundView2);
+                    indices.clear();
+                    subscripts.clear();
+                    molesUsed = false;
+                    solveMolarity = false;
+                    selectUnits = false;
+                    selectVariable = false;
+                    solvePPM = false;
+                    compound = "";
                     elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner2);
                      adapter = ArrayAdapter.createFromResource(this,
                             R.array.elements_array, android.R.layout.simple_spinner_item);
@@ -93,9 +111,25 @@ public class SolutionsActivity extends Activity {
                     });
                     break;
                 case R.id.mgLRadioButton:
+                    indices.clear();
+                    subscripts.clear();
+                    molesUsed = false;
+                    solveMolarity = false;
+                    selectUnits = false;
+                    selectVariable = false;
+                    solvePPM = false;
+                    compound = "";
                     Toast.makeText(getApplicationContext(),"mg/L Option to be Implemented Later", Toast.LENGTH_LONG ).show();
                     break;
                 case R.id.percentRadioButton:
+                    indices.clear();
+                    subscripts.clear();
+                    molesUsed = false;
+                    solveMolarity = false;
+                    selectUnits = false;
+                    selectVariable = false;
+                    solvePPM = false;
+                    compound = "";
                     Toast.makeText(getApplicationContext(),"% [] Option to be Implemented Later", Toast.LENGTH_LONG ).show();
                     break;
                 case R.id.solAddCompound:
@@ -223,6 +257,126 @@ public class SolutionsActivity extends Activity {
                         }
                     }
 
+                    break;
+                case R.id.solAddCompound2:
+                    EditText subscriptText2 = (EditText) findViewById(R.id.subscriptSolEdit2);
+                    String subscript2 = subscriptText2.getText().toString();
+                    if (subscript2.equals("")) {
+                        subscripts.add(1);
+                    }
+                    else {
+                        subscripts.add(Integer.parseInt(subscript2));
+                    }
+                    indices.add(index);
+                    compound = compound + elements[index] + subscript2;
+                    solCompoundView2.setText(compound);
+                    subscriptText2.setText("");
+                    break;
+                case R.id.solClearCompound2:
+                    indices.clear();
+                    subscripts.clear();
+                    compound = "";
+                    solCompoundView2.setText("");
+                    break;
+                case R.id.soluteMolUnits2:
+                    molesUsed = true;
+                    selectUnits = true;
+                    break;
+                case R.id.soluteGramUnits2:
+                    molesUsed = false;
+                    selectUnits = true;
+                    break;
+                case R.id.solveMassRadioButton2:
+                    solvePPM = false;
+                    selectVariable = true;
+                    break;
+                case R.id.solvePPMRadioButton2:
+                    solvePPM = true;
+                    selectVariable = true;
+                    break;
+                case R.id.solCalcButton2:
+                    EditText solventEdit = (EditText) findViewById(R.id.solventEditText);
+                    EditText soluteEdit2 = (EditText) findViewById(R.id.soluteEdit2);
+                    EditText ppmEdit = (EditText) findViewById(R.id.ppmEdit);
+
+                    if (solCompoundView2.getText().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Enter a valid compound", Toast.LENGTH_LONG).show();
+                    }
+                    else if (solventEdit.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Enter a value for the solvent mass", Toast.LENGTH_LONG).show();
+                    }
+                    else if (!selectUnits) {
+                        Toast.makeText(getApplication(), "Select units for the solute mass", Toast.LENGTH_LONG).show();
+                    }
+                    else if(!selectVariable) {
+                        Toast.makeText(getApplicationContext(), "Select the variable to solve for", Toast.LENGTH_LONG).show();
+                    }
+                    else if (solvePPM && soluteEdit2.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Enter a value for the solute mass", Toast.LENGTH_LONG).show();
+                    }
+                    else if (!solvePPM && ppmEdit.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Enter a value for the ppm", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        //all necessary variables are defined
+                        if (solvePPM) {
+                            Double ppm;
+                            Double solute = Double.parseDouble(soluteEdit2.getText().toString());
+                            if (molesUsed) {
+                                //convert mass in moles to grams
+                                double mass = 0;
+                                for (int i = 0; i < subscripts.size(); i++) {
+                                    double value = subscripts.get(i) * molWeights[indices.get(i)];
+                                    mass += value;
+                                }
+                                solute *= mass;
+
+                            }
+                            Double solvent = Double.parseDouble(solventEdit.getText().toString());
+                            ppm = solute / (solute + solvent);
+                            ppm = ppm * 1000000;
+                            String result = ppm.toString();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                            builder.setMessage(result).setTitle("Solute's ppm: ");
+                            builder.setPositiveButton("Done", new DialogInterface.OnClickListener()
+                            {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                            builder.create();
+                            builder.show();
+                        }
+                        else {
+                            String result;
+                            Double ppm = Double.parseDouble(ppmEdit.getText().toString());
+                            ppm = ppm / 1000000;
+                            Double solvent = Double.parseDouble(solventEdit.getText().toString());
+                            Double solute = (ppm * solvent) / (1 - ppm);
+                            if (molesUsed) {
+                                double mass = 0;
+                                for (int i = 0; i < subscripts.size(); i++) {
+                                    double value = subscripts.get(i) * molWeights[indices.get(i)];
+                                    mass += value;
+                                }
+                                solute = solute / mass;
+                                result = "Solute = " + solute + " mol";
+                            }
+                            else {
+                                result = "Solute = " + solute + " g";
+                            }
+                            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                            builder.setMessage(result).setTitle("Solute Mass: ");
+                            builder.setPositiveButton("Done", new DialogInterface.OnClickListener()
+                            {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                            builder.create();
+                            builder.show();
+                        }
+                    }
                     break;
 			default:
                 break;

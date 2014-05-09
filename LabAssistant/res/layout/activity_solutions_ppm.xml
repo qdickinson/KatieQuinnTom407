@@ -171,11 +171,11 @@
                 android:layout_marginTop="420dp">
 
         <RadioButton
-                android:id="@+id/solveMolarityRadioButton2"
+                android:id="@+id/solvePPMRadioButton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onButtonClick"
-                android:text="Solve for molarity of solution"
+                android:text="Solve for ppm"
                 android:layout_marginLeft="15dp"/>
 
         <RadioButton
