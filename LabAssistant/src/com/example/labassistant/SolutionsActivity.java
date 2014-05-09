@@ -29,6 +29,7 @@ public class SolutionsActivity extends Activity {
     private boolean selectUnits = false;
     private boolean selectVariable = false;
     private boolean solvePPM = false;
+    private boolean solveMGL = false;
 
 
     private Double[] molWeights = {227.0, 107.87, 26.982, 39.948, 74.922, 210.0, 196.97, 10.811, 137.33, 9.0122, 272.0,
@@ -63,6 +64,7 @@ public class SolutionsActivity extends Activity {
                     selectUnits = false;
                     selectVariable = false;
                     solvePPM = false;
+                    solveMGL = false;
                     compound = "";
                     elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner);
                     adapter = ArrayAdapter.createFromResource(this,
@@ -92,6 +94,7 @@ public class SolutionsActivity extends Activity {
                     selectUnits = false;
                     selectVariable = false;
                     solvePPM = false;
+                    solveMGL = false;
                     compound = "";
                     elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner2);
                      adapter = ArrayAdapter.createFromResource(this,
@@ -121,6 +124,7 @@ public class SolutionsActivity extends Activity {
                     selectUnits = false;
                     selectVariable = false;
                     solvePPM = false;
+                    solveMGL = false;
                     compound = "";
                     elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner3);
                     adapter = ArrayAdapter.createFromResource(this,
@@ -395,6 +399,116 @@ public class SolutionsActivity extends Activity {
                             builder.create();
                             builder.show();
                         }
+                    }
+                    break;
+                case R.id.solAddCompound3:
+                    EditText subscriptText3 = (EditText) findViewById(R.id.subscriptSolEdit3);
+                    String subscript3 = subscriptText3.getText().toString();
+                    if (subscript3.equals("")) {
+                        subscripts.add(1);
+                    }
+                    else {
+                        subscripts.add(Integer.parseInt(subscript3));
+                    }
+                    indices.add(index);
+                    compound = compound + elements[index] + subscript3;
+                    solCompoundView3.setText(compound);
+                    subscriptText3.setText("");
+                    break;
+                case R.id.solClearCompound3:
+                    indices.clear();
+                    subscripts.clear();
+                    compound = "";
+                    solCompoundView3.setText("");
+                    break;
+                case R.id.soluteMolUnits3:
+                    molesUsed = true;
+                    selectUnits = true;
+                    break;
+                case R.id.soluteGramUnits3:
+                    molesUsed = false;
+                    selectUnits = true;
+                    break;
+                case R.id.solveMGLRadioButton3:
+                    solveMGL = true;
+                    selectVariable = true;
+                    break;
+                case R.id.solveMassRadioButton3:
+                    solveMGL = false;
+                    selectVariable = true;
+                    break;
+                case R.id.solCalcButton3:
+                    EditText solutionEdit = (EditText) findViewById(R.id.solutionVolumeEditText3);
+                    EditText soluteEdit3 = (EditText) findViewById(R.id.soluteEdit3);
+                    EditText mglEdit3 = (EditText) findViewById(R.id.mglEdit3);
+                    if (solCompoundView3.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Enter a valid compound", Toast.LENGTH_LONG).show();
+                    }
+                    else if (solutionEdit.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Enter a value for the solution volume", Toast.LENGTH_LONG).show();
+                    }
+                    else if (!selectUnits) {
+                        Toast.makeText(getApplicationContext(), "Select units for the solute", Toast.LENGTH_LONG).show();
+                    }
+                    else if (!selectVariable) {
+                        Toast.makeText(getApplicationContext(), "Select a variable to solve for", Toast.LENGTH_LONG).show();
+                    }
+                    else if (solveMGL && soluteEdit3.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Enter a value for the solute mass", Toast.LENGTH_LONG).show();
+                    }
+                    else if (!solveMGL && mglEdit3.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Enter a value for milligrams p. liter", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                       if (solveMGL) {
+                           Double solute = Double.parseDouble(soluteEdit3.getText().toString());
+                           if (molesUsed) {
+                               double mass = 0;
+                               for (int i = 0; i < subscripts.size(); i++) {
+                                   double value = subscripts.get(i) * molWeights[indices.get(i)];
+                                   mass += value;
+                               }
+                               solute = solute * mass / 0.001;
+                           }
+                           Double volume = Double.parseDouble(solutionEdit.getText().toString());
+                           Double answer = solute/volume;
+                           String result = "Concentration = " + answer + " mg/L";
+                           AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                           builder.setMessage(result).setTitle("Milligrams p. Liter: ");
+                           builder.setPositiveButton("Done", new DialogInterface.OnClickListener()
+                           {
+                               public void onClick(DialogInterface dialog, int id) {
+                                   dialog.cancel();
+                               }
+                           });
+                           builder.create();
+                           builder.show();
+                       }
+                       else {
+                           //solve for amount of solute
+                           Double mgl = Double.parseDouble(mglEdit3.getText().toString());
+                           Double volume = Double.parseDouble(solutionEdit.getText().toString());
+                           Double amt_solute = mgl * volume;
+                           if (molesUsed) {
+                               double mass = 0;
+                               for (int i = 0; i < subscripts.size(); i++) {
+                                   double value = subscripts.get(i) * molWeights[indices.get(i)];
+                                   mass += value;
+                                   amt_solute = (amt_solute * .001) / mass;
+                               }
+                           }
+                          String result = "Mass = " + amt_solute + " mg";
+                           AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                           builder.setMessage(result).setTitle("Amount of solute: ");
+                           builder.setPositiveButton("Done", new DialogInterface.OnClickListener()
+                           {
+                               public void onClick(DialogInterface dialog, int id) {
+                                   dialog.cancel();
+                               }
+                           });
+                           builder.create();
+                           builder.show();
+                       }
                     }
                     break;
 			default:

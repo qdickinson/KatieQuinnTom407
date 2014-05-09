@@ -140,7 +140,7 @@
                 android:id="@+id/soluteGramUnits3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="grams"
+                android:text="milligrams"
                 android:onClick="onButtonClick"
                 android:layout_alignLeft="@+id/soluteMolUnits3"
                 android:layout_below="@+id/soluteMolUnits3"/>
