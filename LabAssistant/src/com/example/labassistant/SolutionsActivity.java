@@ -23,6 +23,10 @@ public class SolutionsActivity extends Activity {
     private TextView solCompoundView;
     private TextView solCompoundView2;
     private TextView solCompoundView3;
+    private TextView solCompoundView4;
+
+    private RadioButton soluteMolUnits4;
+    private RadioButton soluteGramUnits4;
 
     private boolean molesUsed = false;
     private boolean solveMolarity = false;
@@ -30,6 +34,7 @@ public class SolutionsActivity extends Activity {
     private boolean selectVariable = false;
     private boolean solvePPM = false;
     private boolean solveMGL = false;
+    private boolean solvePercent = false;
 
 
     private Double[] molWeights = {227.0, 107.87, 26.982, 39.948, 74.922, 210.0, 196.97, 10.811, 137.33, 9.0122, 272.0,
@@ -65,6 +70,7 @@ public class SolutionsActivity extends Activity {
                     selectVariable = false;
                     solvePPM = false;
                     solveMGL = false;
+                    solvePercent = false;
                     compound = "";
                     elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner);
                     adapter = ArrayAdapter.createFromResource(this,
@@ -95,6 +101,7 @@ public class SolutionsActivity extends Activity {
                     selectVariable = false;
                     solvePPM = false;
                     solveMGL = false;
+                    solvePercent = false;
                     compound = "";
                     elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner2);
                      adapter = ArrayAdapter.createFromResource(this,
@@ -125,6 +132,7 @@ public class SolutionsActivity extends Activity {
                     selectVariable = false;
                     solvePPM = false;
                     solveMGL = false;
+                    solvePercent = false;
                     compound = "";
                     elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner3);
                     adapter = ArrayAdapter.createFromResource(this,
@@ -145,6 +153,8 @@ public class SolutionsActivity extends Activity {
                     });
                     break;
                 case R.id.percentRadioButton:
+                    setContentView(R.layout.activity_solutions_percent);
+                    solCompoundView4 = (TextView) findViewById(R.id.solCompoundView4);
                     indices.clear();
                     subscripts.clear();
                     molesUsed = false;
@@ -152,8 +162,31 @@ public class SolutionsActivity extends Activity {
                     selectUnits = false;
                     selectVariable = false;
                     solvePPM = false;
+                    solveMGL = false;
+                    solvePercent = false;
                     compound = "";
-                    Toast.makeText(getApplicationContext(),"% [] Option to be Implemented Later", Toast.LENGTH_LONG ).show();
+                    elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner4);
+                    adapter = ArrayAdapter.createFromResource(this,
+                            R.array.elements_array, android.R.layout.simple_spinner_item);
+
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    elementsSpinner.setAdapter(adapter);
+
+                    elementsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                            index = arg0.getSelectedItemPosition();
+                            elements = getResources().getStringArray(R.array.elements_array);
+                        }
+
+                        public void onNothingSelected(AdapterView<?> arg0) {
+                            //do nothing
+                        }
+                    });
+
+                    soluteMolUnits4 = (RadioButton) findViewById(R.id.soluteMolUnits4);
+                    soluteMolUnits4.setVisibility(View.INVISIBLE);
+                    soluteGramUnits4 = (RadioButton) findViewById(R.id.soluteGramUnits4);
+                    soluteGramUnits4.setVisibility(View.INVISIBLE);
                     break;
                 case R.id.solAddCompound:
                     EditText subscriptText = (EditText) findViewById(R.id.subscriptSolEdit);
@@ -510,6 +543,32 @@ public class SolutionsActivity extends Activity {
                            builder.show();
                        }
                     }
+                    break;
+                case R.id.solAddCompound4:
+                    break;
+                case R.id.solClearCompound4:
+                    break;
+                case R.id.solutionLiters4:
+                    soluteMolUnits4 = (RadioButton) findViewById(R.id.soluteMolUnits4);
+                    soluteMolUnits4.setVisibility(View.INVISIBLE);
+                    soluteGramUnits4 = (RadioButton) findViewById(R.id.soluteGramUnits4);
+                    soluteGramUnits4.setVisibility(View.INVISIBLE);
+                    break;
+                case R.id.solutionGrams4:
+                    soluteMolUnits4 = (RadioButton) findViewById(R.id.soluteMolUnits4);
+                    soluteMolUnits4.setVisibility(View.VISIBLE);
+                    soluteGramUnits4 = (RadioButton) findViewById(R.id.soluteGramUnits4);
+                    soluteGramUnits4.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.soluteMolUnits4:
+                    break;
+                case R.id.soluteGramUnits4:
+                    break;
+                case R.id.solvePercRadioButton4:
+                    break;
+                case R.id.solveMassRadioButton4:
+                    break;
+                case R.id.solCalcButton4:
                     break;
 			default:
                 break;
