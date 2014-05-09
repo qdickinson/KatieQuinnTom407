@@ -22,6 +22,7 @@ public class SolutionsActivity extends Activity {
     private String compound = "";
     private TextView solCompoundView;
     private TextView solCompoundView2;
+    private TextView solCompoundView3;
 
     private boolean molesUsed = false;
     private boolean solveMolarity = false;
@@ -111,6 +112,8 @@ public class SolutionsActivity extends Activity {
                     });
                     break;
                 case R.id.mgLRadioButton:
+                    setContentView(R.layout.activity_solutions_mgl);
+                    solCompoundView3 = (TextView) findViewById(R.id.solCompoundView3);
                     indices.clear();
                     subscripts.clear();
                     molesUsed = false;
@@ -119,7 +122,23 @@ public class SolutionsActivity extends Activity {
                     selectVariable = false;
                     solvePPM = false;
                     compound = "";
-                    Toast.makeText(getApplicationContext(),"mg/L Option to be Implemented Later", Toast.LENGTH_LONG ).show();
+                    elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner3);
+                    adapter = ArrayAdapter.createFromResource(this,
+                            R.array.elements_array, android.R.layout.simple_spinner_item);
+
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    elementsSpinner.setAdapter(adapter);
+
+                    elementsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                            index = arg0.getSelectedItemPosition();
+                            elements = getResources().getStringArray(R.array.elements_array);
+                        }
+
+                        public void onNothingSelected(AdapterView<?> arg0) {
+                            //do nothing
+                        }
+                    });
                     break;
                 case R.id.percentRadioButton:
                     indices.clear();
