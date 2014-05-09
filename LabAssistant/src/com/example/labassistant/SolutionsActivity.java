@@ -35,6 +35,8 @@ public class SolutionsActivity extends Activity {
     private boolean solvePPM = false;
     private boolean solveMGL = false;
     private boolean solvePercent = false;
+    private boolean solveVolume = false;
+    private boolean selectUnits1 = false;
 
 
     private Double[] molWeights = {227.0, 107.87, 26.982, 39.948, 74.922, 210.0, 196.97, 10.811, 137.33, 9.0122, 272.0,
@@ -71,6 +73,8 @@ public class SolutionsActivity extends Activity {
                     solvePPM = false;
                     solveMGL = false;
                     solvePercent = false;
+                    solveVolume = false;
+                    selectUnits1 = false;
                     compound = "";
                     elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner);
                     adapter = ArrayAdapter.createFromResource(this,
@@ -102,6 +106,8 @@ public class SolutionsActivity extends Activity {
                     solvePPM = false;
                     solveMGL = false;
                     solvePercent = false;
+                    solveVolume = false;
+                    selectUnits1 = false;
                     compound = "";
                     elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner2);
                      adapter = ArrayAdapter.createFromResource(this,
@@ -133,6 +139,8 @@ public class SolutionsActivity extends Activity {
                     solvePPM = false;
                     solveMGL = false;
                     solvePercent = false;
+                    solveVolume = false;
+                    selectUnits1 = false;
                     compound = "";
                     elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner3);
                     adapter = ArrayAdapter.createFromResource(this,
@@ -164,6 +172,8 @@ public class SolutionsActivity extends Activity {
                     solvePPM = false;
                     solveMGL = false;
                     solvePercent = false;
+                    solveVolume = false;
+                    selectUnits1 = false;
                     compound = "";
                     elementsSpinner = (Spinner) findViewById(R.id.solutionSpinner4);
                     adapter = ArrayAdapter.createFromResource(this,
@@ -545,30 +555,142 @@ public class SolutionsActivity extends Activity {
                     }
                     break;
                 case R.id.solAddCompound4:
+                    EditText subscriptText4 = (EditText) findViewById(R.id.subscriptSolEdit4);
+                    String subscript4 = subscriptText4.getText().toString();
+                    if (subscript4.equals("")) {
+                        subscripts.add(1);
+                    }
+                    else {
+                        subscripts.add(Integer.parseInt(subscript4));
+                    }
+                    indices.add(index);
+                    compound = compound + elements[index] + subscript4;
+                    solCompoundView4.setText(compound);
+                    subscriptText4.setText("");
                     break;
                 case R.id.solClearCompound4:
+                    indices.clear();
+                    subscripts.clear();
+                    compound = "";
+                    solCompoundView4.setText("");
                     break;
                 case R.id.solutionLiters4:
+                    solveVolume = true;
+                    selectUnits = true;
+                    selectUnits1 = true;
                     soluteMolUnits4 = (RadioButton) findViewById(R.id.soluteMolUnits4);
                     soluteMolUnits4.setVisibility(View.INVISIBLE);
                     soluteGramUnits4 = (RadioButton) findViewById(R.id.soluteGramUnits4);
                     soluteGramUnits4.setVisibility(View.INVISIBLE);
                     break;
                 case R.id.solutionGrams4:
+                    solveVolume = false;
+                    selectUnits = false;
+                    selectUnits1 = true;
                     soluteMolUnits4 = (RadioButton) findViewById(R.id.soluteMolUnits4);
                     soluteMolUnits4.setVisibility(View.VISIBLE);
                     soluteGramUnits4 = (RadioButton) findViewById(R.id.soluteGramUnits4);
                     soluteGramUnits4.setVisibility(View.VISIBLE);
                     break;
                 case R.id.soluteMolUnits4:
+                    selectUnits = true;
+                    molesUsed = true;
                     break;
                 case R.id.soluteGramUnits4:
+                    selectUnits = true;
+                    molesUsed = false;
                     break;
                 case R.id.solvePercRadioButton4:
+                    selectVariable = true;
+                    solvePercent = true;
                     break;
                 case R.id.solveMassRadioButton4:
+                    selectVariable = true;
+                    solvePercent = false;
                     break;
                 case R.id.solCalcButton4:
+                    EditText solutionEdit4 = (EditText) findViewById(R.id.solutionVolumeEditText4);
+                    EditText soluteEdit4 = (EditText) findViewById(R.id.soluteEdit4);
+                    EditText percentEdit4 = (EditText) findViewById(R.id.percentEdit4);
+                    if (solCompoundView4.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Enter a valid compound", Toast.LENGTH_LONG).show();
+                    }
+                    else if (solutionEdit4.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Enter an amount for the solution", Toast.LENGTH_LONG).show();
+                    }
+                    else if (!selectUnits1) {
+                        Toast.makeText(getApplicationContext(), "Select units for the solution", Toast.LENGTH_LONG).show();
+                    }
+                    else if (!solveVolume && !selectUnits) {
+                        Toast.makeText(getApplicationContext(), "Select units for the solute", Toast.LENGTH_LONG).show();
+                    }
+                    else if (!selectVariable) {
+                        Toast.makeText(getApplicationContext(), "Select a variable to solve for", Toast.LENGTH_LONG).show();
+                    }
+                    else if (solvePercent && soluteEdit4.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Enter an amount for the solute", Toast.LENGTH_LONG).show();
+                    }
+                    else if (!solvePercent && percentEdit4.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Enter a percent concentration", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        if (solvePercent) {
+                            Double solute = Double.parseDouble(soluteEdit4.getText().toString());
+                            if(molesUsed) {
+                                double mass = 0;
+                                for (int i = 0; i < subscripts.size(); i++) {
+                                    double value = subscripts.get(i) * molWeights[indices.get(i)];
+                                    mass += value;
+                                }
+                                solute *= mass;
+                            }
+                            Double solution = Double.parseDouble(solutionEdit4.getText().toString());
+                            Double answer = (solute / solution) * 100;
+                            String result = answer + "%";
+                            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                            builder.setMessage(result).setTitle("Percent Concentration: ");
+                            builder.setPositiveButton("Done", new DialogInterface.OnClickListener()
+                            {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                            builder.create();
+                            builder.show();
+                        }
+                        else {
+                            //solving for amount of solute
+                            Double solution = Double.parseDouble(solutionEdit4.getText().toString());
+                            Double percent = Double.parseDouble(percentEdit4.getText().toString());
+                            Double solute = percent * solution * .01;
+                            String answer = "";
+                            if (solveVolume) {
+                                 answer = solute + " L";
+                            }
+                            else if(!molesUsed) {
+                                 answer = solute + " g";
+                            }
+                            else {
+                                double mass = 0;
+                                for (int i = 0; i < subscripts.size(); i++) {
+                                    double value = subscripts.get(i) * molWeights[indices.get(i)];
+                                    mass += value;
+                                }
+                                solute = solute / mass;
+                                 answer = solute + " mol";
+                            }
+                            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                            builder.setMessage(answer).setTitle("Amount of Solute: ");
+                            builder.setPositiveButton("Done", new DialogInterface.OnClickListener()
+                            {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                            builder.create();
+                            builder.show();
+                        }
+                    }
                     break;
 			default:
                 break;

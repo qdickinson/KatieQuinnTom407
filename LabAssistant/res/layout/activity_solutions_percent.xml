@@ -77,7 +77,7 @@
             android:id="@+id/solutionAmtText4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Amount of Solution (L) "
+            android:text="Amount of Solution "
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_below="@+id/solClearCompound4"
             android:layout_marginTop="15dp"
@@ -157,7 +157,7 @@
                 android:id="@+id/soluteGramUnits4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="milligrams"
+                android:text="grams"
                 android:onClick="onButtonClick"
                 android:layout_alignLeft="@+id/soluteMolUnits4"
                 android:layout_below="@+id/soluteMolUnits4"/>
@@ -200,7 +200,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onButtonClick"
-                android:text="Solve for mass of solute"
+                android:text="Solve for amount of solute"
                 android:layout_marginLeft="15dp"/>
 
     </RadioGroup>
