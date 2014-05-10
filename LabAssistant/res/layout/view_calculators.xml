@@ -16,7 +16,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="35dp"
             android:onClick="onButtonClick"
-            android:text="Scientific" />
+            android:text="Basic" />
 
         <Button
             android:id="@+id/molweightbutton"
@@ -32,7 +32,7 @@
             android:id="@+id/solutionsbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/scientificbutton"
+            android:layout_centerHorizontal="true"
             android:layout_below="@+id/molweightbutton"
             android:layout_marginTop="19dp"
             android:onClick="onButtonClick"
@@ -42,7 +42,7 @@
             android:id="@+id/dilutionsbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/solutionsbutton"
+            android:layout_centerHorizontal="true"
             android:layout_below="@+id/solutionsbutton"
             android:layout_marginTop="26dp"
             android:onClick="onButtonClick"
