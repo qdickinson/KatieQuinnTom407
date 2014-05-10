@@ -86,7 +86,8 @@ public class MainActivity extends Activity {
 
 		case R.id.unitconverterbutton:
 
-			setContentView(R.layout.view_calculators);
+			Intent converterIntent = new Intent(MainActivity.this, UnitConverterActivity.class);
+			startActivity(converterIntent);
 
 			break;
 
