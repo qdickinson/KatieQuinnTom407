@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/eqnView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/convertfrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/eqnView"
+        android:layout_marginRight="34dp"
+        android:layout_marginTop="33dp"
+        android:onClick="onButtonClick"
+        android:text="Kg" />
+
+    <Button
+        android:id="@+id/convertbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/convertfrom"
+        android:layout_below="@+id/convertto"
+        android:layout_marginTop="62dp"
+        android:onClick="onButtonClick"
+        android:text="Convert" />
+
+    <Button
+        android:id="@+id/convertto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/convertbutton"
+        android:layout_centerVertical="true"
+        android:onClick="onButtonClick"
+        android:text="Kg" />
+
+    <EditText
+        android:id="@+id/input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/convertfrom"
+        android:layout_toLeftOf="@+id/convertbutton"
+        android:ems="10"
+        android:inputType="numberDecimal" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/output"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/convertto"
+        android:layout_alignBottom="@+id/convertto"
+        android:layout_alignRight="@+id/input"
+        android:ems="10"
+        android:clickable="false" 
+        android:cursorVisible="false" 
+        android:focusable="false" 
+        android:focusableInTouchMode="false"
+        android:inputType="numberDecimal" />
+
+</RelativeLayout>
