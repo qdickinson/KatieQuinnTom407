@@ -31,5 +31,10 @@
     <item>Ti</item><item>Tl</item><item>Tm</item><item>U</item>
     <item>V</item><item>W</item><item>Xe</item><item>Y</item><item>Yb</item>
     <item>Zn</item><item>Zr</item></string-array>
+    
+    <string-array name="concentration_array"><item>M</item><item>mM</item><item>uM</item>
+    <item>nM</item></string-array>
+    
+    <string-array name="volume_array"><item>L</item><item>mL</item><item>uL</item></string-array>
 
 </resources>

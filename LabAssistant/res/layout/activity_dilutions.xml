@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+   
+    <EditText
+        android:id="@+id/initialConcentration"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/initialConcentrationText"
+        android:layout_alignBottom="@+id/initialConcentrationText"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/initialConcentrationText"
+        android:ems="10"
+        android:inputType="numberDecimal" >
+    </EditText>
+    
+
+    <EditText
+        android:id="@+id/finalConcentration"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/finalConcentrationText"
+        android:layout_alignBottom="@+id/finalConcentrationText"
+        android:layout_alignLeft="@+id/initialConcentration"
+        android:ems="10"
+        android:inputType="numberDecimal" >
+
+        <requestFocus />
+    </EditText>
+
+    <Spinner
+        android:id="@+id/concentrationSpinner_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/finalVolumeText"
+        android:layout_alignTop="@+id/finalConcentration"
+        android:layout_toRightOf="@+id/finalConcentration"
+        android:layout_weight="1" />
+
+    <EditText
+        android:id="@+id/finalVolume"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/finalVolumeText"
+        android:layout_alignBottom="@+id/finalVolumeText"
+        android:layout_alignLeft="@+id/finalConcentration"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <Spinner
+        android:id="@+id/finalVolumeSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/finalVolume"
+        android:layout_alignTop="@+id/finalVolume"
+        android:layout_toRightOf="@+id/finalConcentration"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/finalVolumeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/finalConcentrationText"
+        android:layout_below="@+id/finalConcentration"
+        android:layout_marginTop="66dp"
+        android:text="Final Volume:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/finalConcentrationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/initialConcentrationText"
+        android:layout_below="@+id/initialConcentrationText"
+        android:layout_marginTop="54dp"
+        android:text="Final Concentration:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/initialConcentrationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="21dp"
+        android:text="Initial Concentration:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Spinner
+        android:id="@+id/concentrationSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/initialConcentrationText"
+        android:layout_alignTop="@+id/initialConcentration"
+        android:layout_toRightOf="@+id/initialConcentration"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/startVolumeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/finalVolume"
+        android:layout_marginTop="65dp"
+        android:layout_toLeftOf="@+id/finalVolume"
+        android:text="Starting Volume:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Spinner
+        android:id="@+id/startVolumeSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/startVolumeText"
+        android:layout_alignLeft="@+id/finalVolume"
+        android:layout_marginLeft="13dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/calculateStartVolume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/startVolumeText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp"
+        android:onClick="onButtonClick"
+        android:text="Calculate" />
+
+</RelativeLayout>

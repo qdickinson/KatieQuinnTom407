@@ -80,7 +80,8 @@ public class MainActivity extends Activity {
 
 		case R.id.dilutionsbutton:
 
-			setContentView(R.layout.view_calculators);
+            Intent dilutionsIntent = new Intent(MainActivity.this, DilutionsActivity.class);
+			startActivity(dilutionsIntent);
 
 			break;
 
@@ -110,6 +111,10 @@ public class MainActivity extends Activity {
 			setContentView(R.layout.activity_main);
 
 			break;
+
+        case R.id.periodicbutton:
+              Intent periodicIntent = new Intent(this, PeriodicTableActivity.class);
+            startActivity(periodicIntent);
 
 		default:
 		}
