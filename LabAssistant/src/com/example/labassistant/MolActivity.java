@@ -1,6 +1,8 @@
 package com.example.labassistant;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +23,6 @@ public class MolActivity extends Activity {
     private ArrayList<Integer> subscripts = new ArrayList<Integer>();
     private String compound = "";
     private TextView molCompoundView;
-    private TextView molDisplayValue;
 
 
     private Double[] molWeights = {227.0, 107.87, 26.982, 39.948, 74.922, 210.0, 196.97, 10.811, 137.33, 9.0122, 272.0,
@@ -40,7 +41,6 @@ public class MolActivity extends Activity {
 			setContentView(R.layout.activity_mol);
 
             molCompoundView = (TextView) findViewById(R.id.molCompoundView);
-            molDisplayValue = (TextView) findViewById(R.id.molDisplayValue);
 
 		    elementsSpinner = (Spinner) findViewById(R.id.molWeightSpinner);
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -87,8 +87,17 @@ public class MolActivity extends Activity {
                         mass += value;
                     }
 
-                    String molarMass = Double.toString(mass);
-                    molDisplayValue.setText(molarMass);
+                    String molarMass = Double.toString(mass) + " g/mol";
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage(molarMass).setTitle("Molar Mass: ");
+                    builder.setPositiveButton("Done", new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.create();
+                    builder.show();
                     indices.clear();
                     subscripts.clear();
                     compound = "";
@@ -101,7 +110,6 @@ public class MolActivity extends Activity {
                     subscripts.clear();
                     compound = "";
                     molCompoundView.setText("");
-                    molDisplayValue.setText("");
 			        break;
 
                 default:

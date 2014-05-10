@@ -84,18 +84,6 @@
         android:layout_toRightOf="@+id/clearbutton"
         android:layout_marginLeft="20dp"/>
 
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="60dp"
-        android:layout_marginLeft="36dp"
-        android:text="Molar Mass:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <Button
         android:id="@+id/clearbutton"
         android:layout_width="wrap_content"
@@ -104,15 +92,5 @@
         android:text="Clear"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/molWeightSpinner"/>
-
-    <TextView
-            android:id="@+id/molDisplayValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_alignTop="@+id/textView2"
-            android:layout_alignLeft="@+id/clearbutton"
-            android:layout_alignStart="@+id/clearbutton"/>
 
 </RelativeLayout>
