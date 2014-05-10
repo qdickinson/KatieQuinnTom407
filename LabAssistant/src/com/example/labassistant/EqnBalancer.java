@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.*;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+import com.berkeleychurchill.chembal.InvalidUserInputException;
+import com.berkeleychurchill.chembal.Main;
+
 import java.util.ArrayList;
 
 public class EqnBalancer extends Activity {
@@ -17,7 +20,7 @@ public class EqnBalancer extends Activity {
     private TextView compoundTextView;
     private TextView eqnView;
     private int index;
-    private String equation = "->";
+    private String equation = "-->";
     private String coefficient = "";
 
 
@@ -112,11 +115,18 @@ public class EqnBalancer extends Activity {
                 break;
 
             case R.id.balanceEqnButton:
+                try {
+                    String answer = Main.balance(equation);
+                    eqnView.setText(answer);
+                } catch (InvalidUserInputException e) {
+
+                }
+
                 break;
 
             case R.id.clearEqnButton:
                 eqnView.setText("");
-                equation = "->";
+                equation = "-->";
                 break;
 
             case R.id.buttonCoeff:
@@ -133,5 +143,6 @@ public class EqnBalancer extends Activity {
             default:
         }
     }
+
 
 }
