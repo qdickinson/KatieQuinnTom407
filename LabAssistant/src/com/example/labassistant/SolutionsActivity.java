@@ -529,6 +529,7 @@ public class SolutionsActivity extends Activity {
                        }
                        else {
                            //solve for amount of solute
+                           String result = "";
                            Double mgl = Double.parseDouble(mglEdit3.getText().toString());
                            Double volume = Double.parseDouble(solutionEdit.getText().toString());
                            Double amt_solute = mgl * volume;
@@ -539,8 +540,11 @@ public class SolutionsActivity extends Activity {
                                    mass += value;
                                    amt_solute = (amt_solute * .001) / mass;
                                }
+                               result = "Mass = " + amt_solute + " mol";
                            }
-                          String result = "Mass = " + amt_solute + " mg";
+                           else {
+                               result = "Mass = " + amt_solute + " mg";
+                           }
                            AlertDialog.Builder builder = new AlertDialog.Builder(this);
                            builder.setMessage(result).setTitle("Amount of solute: ");
                            builder.setPositiveButton("Done", new DialogInterface.OnClickListener()
