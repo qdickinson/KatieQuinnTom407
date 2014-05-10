@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+
+    <TextView
+            android:id="@+id/solCompoundHeader4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter the solute compound:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_alignLeft="@+id/solHeader4"/>
+
+    <Spinner
+            android:id="@+id/solutionSpinner4"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/elements_array"
+            android:prompt="@string/select"
+            android:layout_below="@+id/solCompoundHeader4"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"/>
+
+    <TextView
+            android:id="@+id/subscriptSolText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subscript"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_alignRight="@+id/solCompoundHeader4"
+            android:layout_alignBottom="@+id/solutionSpinner4"
+            android:layout_below="@+id/solCompoundHeader4"/>
+
+    <EditText
+            android:id="@+id/subscriptSolEdit4"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginTop="15dp"
+            android:layout_alignBottom="@+id/subscriptSolText4"
+            android:layout_alignRight="@+id/subscriptSolText4"
+            android:layout_alignEnd="@+id/subscriptSolText4"/>
+
+    <Button
+            android:id="@+id/solAddCompound4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:onClick="onButtonClick"
+            android:layout_alignTop="@+id/solutionSpinner4"
+            android:layout_alignRight="@+id/solCalcButton4"
+            android:layout_alignEnd="@+id/solCalcButton4"/>
+
+    <TextView
+            android:id="@+id/solCompoundView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=""
+            android:layout_below="@+id/subscriptSolEdit4"
+            android:layout_alignLeft="@+id/solutionSpinner4"
+            android:layout_marginTop="10dp"
+            android:layout_alignStart="@+id/solutionSpinner4"/>
+
+    <Button
+            android:id="@+id/solClearCompound4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            android:onClick="onButtonClick"
+            android:layout_below="@id/subscriptSolEdit4"
+            android:layout_alignRight="@id/subscriptSolEdit4"
+            android:layout_alignEnd="@id/subscriptSolEdit4"/>
+
+    <TextView
+            android:id="@+id/solutionAmtText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount of Solution "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_below="@+id/solClearCompound4"
+            android:layout_marginTop="15dp"
+            android:layout_toLeftOf="@+id/subscriptSolEdit4"/>
+
+    <EditText
+            android:id="@+id/solutionVolumeEditText4"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:layout_alignBottom="@id/solutionAmtText4"
+            android:layout_alignLeft="@+id/solClearCompound4"
+            android:layout_alignStart="@+id/solClearCompound4"/>
+
+    <RadioGroup android:layout_width="match_parent" android:layout_height="match_parent"
+                android:layout_marginTop="180dp" android:layout_marginLeft="50dp">
+
+        <RadioButton
+                android:id="@+id/solutionLiters4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="liters"
+                android:onClick="onButtonClick"/>
+
+        <RadioButton
+                android:id="@+id/solutionGrams4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="grams"
+                android:onClick="onButtonClick"/>
+
+    </RadioGroup>
+
+    <TextView
+            android:id="@+id/solHeader4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Complete one of the two below attributes:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginTop="240dp"
+            android:layout_centerHorizontal="true"/>
+
+    <TextView
+            android:id="@+id/percentText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Percent Concentration (%)"
+            android:layout_alignTop="@+id/solHeader4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="60dp"/>
+
+    <EditText
+            android:id="@+id/percentEdit4"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:layout_alignBottom="@id/percentText4"
+            android:layout_marginLeft="220dp"/>
+
+    <RadioGroup android:layout_width="match_parent" android:layout_height="match_parent"
+                android:layout_marginTop="350dp" android:layout_marginLeft="50dp">
+
+        <RadioButton
+                android:id="@+id/soluteMolUnits4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="moles"
+                android:onClick="onButtonClick"
+                android:layout_below="@+id/soluteText4"
+                android:layout_alignRight="@+id/molText4"
+                android:layout_alignEnd="@+id/molText4"/>
+
+        <RadioButton
+                android:id="@+id/soluteGramUnits4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="grams"
+                android:onClick="onButtonClick"
+                android:layout_alignLeft="@+id/soluteMolUnits4"
+                android:layout_below="@+id/soluteMolUnits4"/>
+
+    </RadioGroup>
+
+    <TextView
+            android:id="@+id/soluteText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount of solute"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_below="@id/percentText4"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentStart="true"/>
+
+    <EditText
+            android:id="@+id/soluteEdit4"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:layout_alignBottom="@+id/soluteText4"
+            android:layout_toRightOf="@+id/soluteText4"/>
+
+    <RadioGroup android:layout_width="match_parent" android:layout_height="match_parent"
+                android:layout_marginTop="420dp">
+
+        <RadioButton
+                android:id="@+id/solvePercRadioButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onButtonClick"
+                android:text="Solve for % concentration"
+                android:layout_marginLeft="15dp"/>
+
+        <RadioButton
+                android:id="@+id/solveMassRadioButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onButtonClick"
+                android:text="Solve for amount of solute"
+                android:layout_marginLeft="15dp"/>
+
+    </RadioGroup>
+
+    <Button
+            android:id="@+id/solCalcButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calculate"
+            android:onClick="onButtonClick"
+            android:layout_alignLeft="@+id/solHeader4"
+            android:layout_alignTop="@+id/solHeader4"
+            android:layout_marginTop="220dp"
+            android:layout_marginLeft="270dp"/>
+
+</RelativeLayout>
