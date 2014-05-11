@@ -120,6 +120,10 @@ public class MainActivity extends Activity {
                     Intent eqnIntent = new Intent(MainActivity.this, EqnBalancer.class);
                     startActivity(eqnIntent);
                 }
+                else if (optionSelected.equals("About This App")) {
+                    Intent aboutIntent = new Intent(MainActivity.this, AboutAppActivity.class);
+                    startActivity(aboutIntent);
+                }
                 return false;
             }
         });
@@ -132,6 +136,7 @@ public class MainActivity extends Activity {
         listDataHeader.add("Calculators");
         listDataHeader.add("Experiments");
         listDataHeader.add("Chemistry Applications");
+        listDataHeader.add("Using Lab Assistant");
 
         List<String> calculators = new ArrayList<String>();
         calculators.add("Basic Calculator");
@@ -147,8 +152,13 @@ public class MainActivity extends Activity {
         applications.add("Periodic Table");
         applications.add("Chemical Equation Balancer");
 
+        List<String> about = new ArrayList<String>();
+        about.add("About This App");
+        about.add("Help Pages");
+
         listDataChild.put(listDataHeader.get(0), calculators);
         listDataChild.put(listDataHeader.get(1), experiments);
         listDataChild.put(listDataHeader.get(2), applications);
+        listDataChild.put(listDataHeader.get(3), about);
     }
 }

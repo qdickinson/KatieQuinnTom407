@@ -7,6 +7,14 @@
 
     <string name="select">Select an Element</string>
 
+    <string name="about1">Lab Assistant was developed to make the life of scientists easier. Because science is hard.</string>
+    <string name="about2">This app can be used to simplify standard chemistry inquiries through its tools for balancing
+        chemical equations, converting units, calculating solutions and dilutions, among other tasks.</string>
+    <string name="about3">Lab Assistant also provides additional references with its periodic table function and the
+        notepad for use during experiments.</string>
+    <string name="about4">Lab Assistant was created by a team of students for the University of Wisconsin-Madison mobile
+        apps development. Please send all comments and questions to lab_assistant@gmail.com.</string>
+
     <string-array name="elements_array"><item>Ac</item><item>Ag</item><item>Al</item>
     <item>Ar</item><item>As</item><item>At</item><item>Au</item><item>B</item>
     <item>Ba</item><item>Be</item><item>Bh</item><item>Bi</item><item>Bk</item>

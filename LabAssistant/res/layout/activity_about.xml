@@ -1,0 +1,49 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="horizontal" android:id="@+id/ScrollView"
+            android:background="@drawable/background">
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="72dp"
+            android:layout_gravity="center_vertical|center_horizontal">
+
+        <TextView
+                android:id="@+id/aboutAppText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_margin="20dp"
+                android:text="@string/about1"/>
+
+        <TextView
+                android:id="@+id/aboutAppText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_margin="20dp"
+                android:text="@string/about2"/>
+
+        <TextView
+                android:id="@+id/aboutAppText3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_margin="20dp"
+                android:text="@string/about3"/>
+
+        <TextView
+                android:id="@+id/aboutAppText4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_margin="20dp"
+                android:text="@string/about4"/>
+
+
+    </LinearLayout>
+</ScrollView>
