@@ -54,6 +54,7 @@
                 android:name="com.example.labassistant.DilutionsActivity"
                 android:label="@string/app_name" />
 
+
     </application>
 
 </manifest>
