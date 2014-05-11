@@ -9,8 +9,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 
 public class MainActivity extends Activity {
 
@@ -27,16 +30,90 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo)
+	{
+			// Setting title for ContextMenu
+			menu.setHeaderTitle("Calculators");
+			menu.add("Scientific");
+			menu.add("Mol Weight");
+			menu.add("Solutions");
+			menu.add("Dilutions");
+			menu.add("Unit Converter");
+			 
+		
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item)
+	{
+		// Get the notes name
+		String name = item.getTitle().toString();
+		
+		if (name.equals("Scientific")){
+			
+			ArrayList<HashMap<String,Object>> items =new ArrayList<HashMap<String,Object>>();
+
+			final PackageManager pm = getPackageManager();
+			List<PackageInfo> packs = pm.getInstalledPackages(0);
+			for (PackageInfo pi : packs) {
+			if( pi.packageName.toString().toLowerCase().contains("calcul")){
+			    HashMap<String, Object> map = new HashMap<String, Object>();
+			    map.put("appName", pi.applicationInfo.loadLabel(pm));
+			    map.put("packageName", pi.packageName);
+			    items.add(map);
+			 }
+			}
+
+			if(items.size()>=1){
+				String packageName = (String) items.get(0).get("packageName");
+				Intent i = pm.getLaunchIntentForPackage(packageName);
+				if (i != null)
+				  startActivity(i);
+				}
+				else{
+				      // Application not found
+				   }
+			
+		}
+		if (name.equals("Mol Weight")){
+			Intent molIntent = new Intent(MainActivity.this, MolActivity.class);
+			startActivity(molIntent);
+
+		}
+		if (name.equals("Solutions")){
+			Intent solutionsIntent = new Intent(MainActivity.this, SolutionsActivity.class);
+			startActivity(solutionsIntent);
+
+		}
+		if (name.equals("Dilutions")){
+			 Intent dilutionsIntent = new Intent(MainActivity.this, DilutionsActivity.class);
+			startActivity(dilutionsIntent);
+		}
+		if (name.equals("Unit Converter")){
+			Intent converterIntent = new Intent(MainActivity.this, UnitConverterActivity.class);
+			startActivity(converterIntent);
+		}
+ 
+        return super.onContextItemSelected(item);
+	}
+	
 	public void onButtonClick(View v)
 	{
 		switch(v.getId())
 		{
+		
 		case R.id.calculatorbutton:
-
-			setContentView(R.layout.view_calculators);
+			
+			
+			View sender = findViewById(R.id.calculatorbutton);
+			registerForContextMenu(sender); 
+		    openContextMenu(sender);
+		    unregisterForContextMenu(sender);
+			
 
 			break;
-
+			/* All taken care of in context menu
 		case R.id.scientificbutton:
 
 			ArrayList<HashMap<String,Object>> items =new ArrayList<HashMap<String,Object>>();
@@ -91,7 +168,7 @@ public class MainActivity extends Activity {
 			startActivity(converterIntent);
 
 			break;
-
+			*/
 
 		case R.id.notepadbutton:
 
