@@ -8,17 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <Button
-            android:id="@+id/openbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="24dp"
-            android:onClick="onButtonClick"
-            android:text="Open Existing Note" />
-
         <EditText
             android:id="@+id/notename"
             android:layout_width="wrap_content"
@@ -29,22 +18,13 @@
             android:ems="10"
             android:hint="Name the Note" />
 
-        <Button
-            android:id="@+id/savebutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/notename"
-            android:layout_toRightOf="@+id/notename"
-            android:onClick="onButtonClick"
-            android:text="Save" />
-
         <EditText
             android:id="@+id/notetext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/notename"
+            android:layout_above="@+id/savebutton"
             android:layout_alignLeft="@+id/openbutton"
-            android:layout_alignRight="@+id/button1"
+            android:layout_alignParentRight="true"
             android:layout_below="@+id/openbutton"
             android:layout_marginTop="22dp"
             android:ems="10"
@@ -54,11 +34,40 @@
         </EditText>
 
         <Button
+            android:id="@+id/savebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/notename"
+            android:layout_alignBottom="@+id/notename"
+            android:layout_alignParentRight="true"
+            android:onClick="onButtonClick"
+            android:text="Save" />
+
+        <Button
+            android:id="@+id/openbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="26dp"
+            android:onClick="onButtonClick"
+            android:text="Open Existing Note" />
+
+        <Button
+            android:id="@+id/deletebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/notetext"
+            android:layout_alignParentRight="true"
+            android:onClick="onButtonClick"
+            android:text="Delete" />
+
+        <Button
             android:id="@+id/newbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/notetext"
-            android:layout_toRightOf="@+id/notetext"
+            android:layout_toRightOf="@+id/openbutton"
             android:onClick="onButtonClick"
             android:text="New" />
 
