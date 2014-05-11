@@ -193,7 +193,7 @@
             android:id="@+id/solCalcButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Calculate"
+            android:text="Solve"
             android:onClick="onButtonClick"
             android:layout_alignLeft="@+id/solHeader"
             android:layout_alignTop="@+id/solHeader"

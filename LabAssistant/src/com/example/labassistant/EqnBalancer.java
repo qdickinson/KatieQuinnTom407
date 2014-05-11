@@ -123,7 +123,7 @@ public class EqnBalancer extends Activity {
                     String answer = Main.balance(equation);
                     eqnView.setText(answer);
                 } catch (InvalidUserInputException e) {
-
+                    Toast.makeText(getApplicationContext(), "This equation cannot be solved.", Toast.LENGTH_LONG).show();
                 }
 
                 break;
