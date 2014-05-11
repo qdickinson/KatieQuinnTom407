@@ -1,0 +1,52 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="horizontal"
+            android:id="@+id/ScrollView"
+            android:background="@drawable/background">
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="90dp"
+            android:layout_gravity="center_horizontal">
+
+        <TextView
+                android:id="@+id/helpHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Select the help page to view: "/>
+
+        <RadioGroup android:layout_width="match_parent" android:layout_height="match_parent">
+
+            <RadioButton
+                    android:id="@+id/helpButtonSolutions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onButtonClick"
+                    android:text="Solutions Calculator Help Page"
+                    android:layout_marginLeft="15dp"/>
+
+            <RadioButton
+                    android:id="@+id/helpButtonEqn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onButtonClick"
+                    android:text="Equation Balancer Help Page"
+                    android:layout_marginLeft="15dp"/>
+
+        </RadioGroup>
+
+        <TextView
+                android:id="@+id/viewHelpContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""/>
+    </LinearLayout>
+</ScrollView>

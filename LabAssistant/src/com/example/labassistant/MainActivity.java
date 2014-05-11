@@ -124,6 +124,10 @@ public class MainActivity extends Activity {
                     Intent aboutIntent = new Intent(MainActivity.this, AboutAppActivity.class);
                     startActivity(aboutIntent);
                 }
+                else if (optionSelected.equals("Help Pages")) {
+                    Intent helpIntent = new Intent(MainActivity.this, HelpPagesActivity.class);
+                    startActivity(helpIntent);
+                }
                 return false;
             }
         });
