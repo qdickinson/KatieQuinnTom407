@@ -69,4 +69,22 @@
         android:focusableInTouchMode="false"
         android:inputType="numberDecimal" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/convertto"
+        android:layout_alignLeft="@+id/textView2"
+        android:text="Convert to"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/input"
+        android:layout_alignRight="@+id/eqnView"
+        android:text="Convert from"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
 </RelativeLayout>
