@@ -3,198 +3,152 @@ package com.example.labassistant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ExpandableListView.OnGroupClickListener;
+import android.widget.ExpandableListView.OnGroupCollapseListener;
+import android.widget.ExpandableListView.OnGroupExpandListener;
 
 public class MainActivity extends Activity {
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-	}
+    ExpandableListAdapter listAdapter;
+    ExpandableListView expListView;
+    List<String> listDataHeader;
+    HashMap<String, List<String>> listDataChild;
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo)
-	{
-			// Setting title for ContextMenu
-			menu.setHeaderTitle("Calculators");
-			menu.add("Scientific");
-			menu.add("Mol Weight");
-			menu.add("Solutions");
-			menu.add("Dilutions");
-			menu.add("Unit Converter");
-			 
-		
-	}
-	
-	@Override
-	public boolean onContextItemSelected(MenuItem item)
-	{
-		// Get the notes name
-		String name = item.getTitle().toString();
-		
-		if (name.equals("Scientific")){
-			
-			ArrayList<HashMap<String,Object>> items =new ArrayList<HashMap<String,Object>>();
+        expListView = (ExpandableListView) findViewById(R.id.lvExp);
+        prepareListData();
 
-			final PackageManager pm = getPackageManager();
-			List<PackageInfo> packs = pm.getInstalledPackages(0);
-			for (PackageInfo pi : packs) {
-			if( pi.packageName.toString().toLowerCase().contains("calcul")){
-			    HashMap<String, Object> map = new HashMap<String, Object>();
-			    map.put("appName", pi.applicationInfo.loadLabel(pm));
-			    map.put("packageName", pi.packageName);
-			    items.add(map);
-			 }
-			}
+        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+        expListView.setAdapter(listAdapter);
 
-			if(items.size()>=1){
-				String packageName = (String) items.get(0).get("packageName");
-				Intent i = pm.getLaunchIntentForPackage(packageName);
-				if (i != null)
-				  startActivity(i);
-				}
-				else{
-				      // Application not found
-				   }
-			
-		}
-		if (name.equals("Mol Weight")){
-			Intent molIntent = new Intent(MainActivity.this, MolActivity.class);
-			startActivity(molIntent);
 
-		}
-		if (name.equals("Solutions")){
-			Intent solutionsIntent = new Intent(MainActivity.this, SolutionsActivity.class);
-			startActivity(solutionsIntent);
+        expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
 
-		}
-		if (name.equals("Dilutions")){
-			 Intent dilutionsIntent = new Intent(MainActivity.this, DilutionsActivity.class);
-			startActivity(dilutionsIntent);
-		}
-		if (name.equals("Unit Converter")){
-			Intent converterIntent = new Intent(MainActivity.this, UnitConverterActivity.class);
-			startActivity(converterIntent);
-		}
- 
-        return super.onContextItemSelected(item);
-	}
-	
-	public void onButtonClick(View v)
-	{
-		switch(v.getId())
-		{
-		
-		case R.id.calculatorbutton:
-			
-			
-			View sender = findViewById(R.id.calculatorbutton);
-			registerForContextMenu(sender); 
-		    openContextMenu(sender);
-		    unregisterForContextMenu(sender);
-			
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                // do nothing
+                return false;
+            }
+        });
 
-			break;
-			/* All taken care of in context menu
-		case R.id.scientificbutton:
+        expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
-			ArrayList<HashMap<String,Object>> items =new ArrayList<HashMap<String,Object>>();
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                //do nothing
+            }
+        });
 
-			final PackageManager pm = getPackageManager();
-			List<PackageInfo> packs = pm.getInstalledPackages(0);
-			for (PackageInfo pi : packs) {
-			if( pi.packageName.toString().toLowerCase().contains("calcul")){
-			    HashMap<String, Object> map = new HashMap<String, Object>();
-			    map.put("appName", pi.applicationInfo.loadLabel(pm));
-			    map.put("packageName", pi.packageName);
-			    items.add(map);
-			 }
-			}
+        expListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
 
-			if(items.size()>=1){
-				String packageName = (String) items.get(0).get("packageName");
-				Intent i = pm.getLaunchIntentForPackage(packageName);
-				if (i != null)
-				  startActivity(i);
-				}
-				else{
-				      // Application not found
-				   }
+            @Override
+            public void onGroupCollapse(int groupPosition) {
+                //do nothing
 
-			break;
+            }
+        });
 
-		case R.id.molweightbutton:
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 
-			Intent molIntent = new Intent(MainActivity.this, MolActivity.class);
-			startActivity(molIntent);
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v,
+                                        int groupPosition, int childPosition, long id) {
 
-			break;
+                String optionSelected = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
 
-		case R.id.solutionsbutton:
+                if (optionSelected.equals("Basic Calculator")) {
+                    ArrayList<HashMap<String,Object>> items =new ArrayList<HashMap<String,Object>>();
 
-			Intent solutionsIntent = new Intent(MainActivity.this, SolutionsActivity.class);
-			startActivity(solutionsIntent);
+                    final PackageManager pm = getPackageManager();
+                    List<PackageInfo> packs = pm.getInstalledPackages(0);
+                    for (PackageInfo pi : packs) {
+                        if( pi.packageName.toString().toLowerCase().contains("calcul")){
+                            HashMap<String, Object> map = new HashMap<String, Object>();
+                            map.put("appName", pi.applicationInfo.loadLabel(pm));
+                            map.put("packageName", pi.packageName);
+                            items.add(map);
+                        }
+                    }
 
-			break;
+                    if(items.size()>=1){
+                        String packageName = (String) items.get(0).get("packageName");
+                        Intent i = pm.getLaunchIntentForPackage(packageName);
+                        if (i != null)
+                            startActivity(i);
+                    }
+                    else{
+                        // Application not found
+                    }
+                }
+                else if (optionSelected.equals("Molar Weight")) {
+                    Intent molIntent = new Intent(MainActivity.this, MolActivity.class);
+                    startActivity(molIntent);
+                }
+                else if (optionSelected.equals("Solutions")) {
+                    Intent solutionsIntent = new Intent(MainActivity.this, SolutionsActivity.class);
+                    startActivity(solutionsIntent);
+                }
+                else if (optionSelected.equals("Dilutions")) {
+                    Intent dilutionsIntent = new Intent(MainActivity.this, DilutionsActivity.class);
+                    startActivity(dilutionsIntent);
+                }
+                else if (optionSelected.equals("Unit Converter")) {
+                    Intent unitIntent = new Intent(MainActivity.this, UnitConverterActivity.class);
+                    startActivity(unitIntent);
+                }
+                else if (optionSelected.equals("Notepad")) {
+                    Intent notepadIntent = new Intent(MainActivity.this, NotepadActivity.class);
+                    startActivity(notepadIntent);
+                }
+                else if (optionSelected.equals("Periodic Table")) {
+                    Intent periodicIntent = new Intent(MainActivity.this, PeriodicTableActivity.class);
+                    startActivity(periodicIntent);
+                }
+                else if (optionSelected.equals("Chemical Equation Balancer")) {
+                    Intent eqnIntent = new Intent(MainActivity.this, EqnBalancer.class);
+                    startActivity(eqnIntent);
+                }
+                return false;
+            }
+        });
+    }
 
-		case R.id.dilutionsbutton:
+    private void prepareListData() {
+        listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, List<String>>();
 
-            Intent dilutionsIntent = new Intent(MainActivity.this, DilutionsActivity.class);
-			startActivity(dilutionsIntent);
+        listDataHeader.add("Calculators");
+        listDataHeader.add("Experiments");
+        listDataHeader.add("Chemistry Applications");
 
-			break;
+        List<String> calculators = new ArrayList<String>();
+        calculators.add("Basic Calculator");
+        calculators.add("Molar Weight");
+        calculators.add("Solutions");
+        calculators.add("Dilutions");
+        calculators.add("Unit Converter");;
 
-		case R.id.unitconverterbutton:
+        List<String> experiments = new ArrayList<String>();
+        experiments.add("Notepad");
 
-			Intent converterIntent = new Intent(MainActivity.this, UnitConverterActivity.class);
-			startActivity(converterIntent);
+        List<String> applications = new ArrayList<String>();
+        applications.add("Periodic Table");
+        applications.add("Chemical Equation Balancer");
 
-			break;
-			*/
-
-		case R.id.notepadbutton:
-
-			Intent notepadIntent = new Intent(MainActivity.this, NotepadActivity.class);
-			startActivity(notepadIntent);
-
-			break;
-
-        case R.id.eqn_balancer:
-            Intent balanceIntent = new Intent(MainActivity.this, EqnBalancer.class);
-            startActivity(balanceIntent);
-
-            break;
-
-		case R.id.backbutton:
-
-			setContentView(R.layout.activity_main);
-
-			break;
-
-        case R.id.periodicbutton:
-              Intent periodicIntent = new Intent(this, PeriodicTableActivity.class);
-            startActivity(periodicIntent);
-
-		default:
-		}
-	}
-
+        listDataChild.put(listDataHeader.get(0), calculators);
+        listDataChild.put(listDataHeader.get(1), experiments);
+        listDataChild.put(listDataHeader.get(2), applications);
+    }
 }
