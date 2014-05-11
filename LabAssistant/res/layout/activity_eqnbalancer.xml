@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Compound Coefficient"
+            android:visibility="invisible"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_below="@+id/eqnBalancerHeading"/>
@@ -41,9 +42,8 @@
             android:layout_height="wrap_content"
             android:entries="@array/elements_array"
             android:prompt="@string/select"
-            android:layout_below="@+id/coefficientEqnBalancer"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"/>
+            android:layout_below="@+id/compoundText" android:layout_alignLeft="@+id/compoundText"
+            android:layout_alignStart="@+id/compoundText"/>
 
     <TextView
             android:id="@+id/subscriptText"
@@ -91,8 +91,8 @@
             android:layout_height="wrap_content"
             android:text="Clear"
             android:onClick="onButtonClick"
-            android:layout_alignTop="@+id/compoundTextView" android:layout_alignLeft="@+id/cmdAddRight"
-            android:layout_alignStart="@+id/cmdAddRight"/>
+            android:layout_alignTop="@+id/compoundTextView" android:layout_alignRight="@+id/cmdAddRight"
+            android:layout_alignEnd="@+id/cmdAddRight"/>
 
     <Button
             android:id="@+id/cmdAddLeft"
@@ -131,8 +131,9 @@
             android:text="Balance"
             android:onClick="onButtonClick"
             android:layout_below="@+id/eqnView"
-            android:layout_toRightOf="@+id/coefficientEqnBalancer"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:layout_alignLeft="@+id/compoundTextView"
+            android:layout_alignStart="@+id/compoundTextView"/>
 
     <Button
             android:id="@+id/clearEqnButton"
@@ -141,8 +142,17 @@
             android:text="Clear"
             android:onClick="onButtonClick"
             android:layout_alignTop="@+id/balanceEqnButton"
-            android:layout_alignLeft="@+id/subscriptText"
-            android:layout_alignStart="@+id/subscriptText"/>
+            android:layout_alignLeft="@+id/cmdAddRight"
+            android:layout_alignStart="@+id/cmdAddRight"/>
+
+    <Button
+            android:id="@+id/undoAddButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Undo"
+            android:onClick = "onButtonClick"
+            android:layout_alignTop="@+id/balanceEqnButton"
+            android:layout_centerHorizontal="true"/>
 
     <Button
             android:id="@+id/buttonCoeff"
@@ -150,9 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add"
-            android:layout_above="@+id/eqnBalancerSpinner"
-            android:layout_alignRight="@+id/clearCmdButton"
-            android:layout_alignEnd="@+id/clearCmdButton"
-            android:onClick="onButtonClick"/>
+            android:onClick="onButtonClick"
+            android:layout_alignTop="@+id/clearCmdButton" android:layout_toRightOf="@+id/undoAddButton"/>
 
 </RelativeLayout>

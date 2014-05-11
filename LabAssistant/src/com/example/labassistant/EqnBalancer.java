@@ -22,6 +22,7 @@ public class EqnBalancer extends Activity {
     private int index;
     private String equation = "-->";
     private String coefficient = "";
+    private String initEqn = "";
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,8 @@ public class EqnBalancer extends Activity {
 
         compoundTextView = (TextView) findViewById(R.id.compoundTextView);
         eqnView = (TextView) findViewById(R.id.eqnView);
-
+        EditText coefficient = (EditText) findViewById(R.id.coefficientEqnBalancer);
+        coefficient.setVisibility(View.GONE);
 
         elementsSpinner = (Spinner) findViewById(R.id.eqnBalancerSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -67,6 +69,7 @@ public class EqnBalancer extends Activity {
                     Toast.makeText(getApplicationContext(), "Please enter a compound", Toast.LENGTH_LONG).show();
                 }
                 else {
+                    initEqn = eqnView.getText().toString();
                     eqnView.setText("");
 
                     if (equation.indexOf('-') != 0) {
@@ -94,6 +97,7 @@ public class EqnBalancer extends Activity {
                     Toast.makeText(getApplicationContext(), "Please enter a compound", Toast.LENGTH_LONG).show();
                 }
                 else {
+                    initEqn = eqnView.getText().toString();
                     eqnView.setText("");
 
                     if (equation.indexOf('>') != equation.length() - 1) {
@@ -138,6 +142,16 @@ public class EqnBalancer extends Activity {
                 compound = compound + selectedElement + subscript;
                 compoundTextView.setText(coefficient + compound);
 
+                break;
+
+            case R.id.undoAddButton:
+                if (initEqn.equals("")) {
+                    equation = "-->";
+                }
+                else {
+                    equation = initEqn;
+                }
+                eqnView.setText(initEqn);
                 break;
 
             default:
